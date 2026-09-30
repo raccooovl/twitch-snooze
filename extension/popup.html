@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Twitch Snooze</title>
+  <link rel="stylesheet" href="ui.css">
+</head>
+<body class="sz-theme sz-popup">
+  <header class="sz-popup-header">
+    <span class="sz-brand" id="brand" aria-hidden="true"></span>
+    <div><span class="sz-eyebrow">Twitch Snooze</span><h1>Hidden Content</h1></div>
+    <span class="sz-version" id="version"></span>
+  </header>
+  <main class="sz-popup-body">
+    <div id="manager-tabs"></div>
+    <section id="streamer-view">
+    <div class="sz-search-row"><input type="search" class="sz-input sz-search" id="channel-search" placeholder="Search hidden…" aria-label="Search hidden streamers"><span class="sz-count" id="count" title="Hidden streamers">0</span></div>
+    <div id="channels"><div class="sz-empty">Loading your hidden streamers…</div></div>
+    <div id="duration-editor"></div>
+    <div id="scope-note"></div>
+    <details class="sz-manual">
+      <summary>Snooze a channel</summary>
+      <form id="snooze-form">
+        <label>Channel name or Twitch link<input class="sz-input" id="channel-input" name="channel" placeholder="e.g. northernlion" autocomplete="off" maxlength="150" required></label>
+        <label>Return after<select class="sz-input" id="duration-input" name="duration"></select></label>
+        <button class="sz-submit" type="submit">Snooze channel</button>
+      </form>
+    </details>
+    </section>
+    <section id="category-view" hidden></section>
+    <section id="whitelist-view" hidden></section>
+    <div id="feedback" aria-live="polite"></div>
+  </main>
+  <footer class="sz-popup-footer">On this device · No tracking</footer>
+  <script src="core.js"></script>
+  <script src="ui.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

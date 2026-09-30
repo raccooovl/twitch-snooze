@@ -1,0 +1,13 @@
+[data-tsnz-hidden="true"] { display: none !important; }
+[data-tsnz-row] { position: relative !important; }
+[data-tsnz-card] { position: relative !important; }
+[data-tsnz-row]:not([data-tsnz-collapsed]) > .side-nav-card__link { padding-right: 29px !important; }
+[data-tsnz-owned="control"] { position: absolute; z-index: 2; right: 3px; top: 50%; transform: translateY(-50%); }
+[data-tsnz-collapsed] > [data-tsnz-owned="control"] { right: 1px; top: 3px; transform: none; }
+[data-tsnz-owned="card-control"] { position: absolute; z-index: 2; right: 7px; top: 7px; opacity: 0; }
+[data-tsnz-card]:hover > [data-tsnz-owned="card-control"], [data-tsnz-owned="card-control"]:focus-within { opacity: 1; }
+[data-tsnz-owned="inline"] { display: block; margin: 5px 6px 10px; }
+[data-tsnz-owned="manager"] { display: block; margin: 10px 6px; }
+[data-tsnz-owned="floating"] { position: fixed; z-index: 2147483645; display: block; width: 240px; }
+[data-tsnz-owned="manager-panel"] { position: fixed; z-index: 2147483645; display: block; width: min(420px, calc(100vw - 20px)); }
+[data-tsnz-owned="toast"] { position: fixed; z-index: 2147483646; left: 20px; bottom: 20px; width: min(360px, calc(100vw - 40px)); }

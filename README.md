@@ -1,0 +1,58 @@
+# Twitch Snooze — Hide Streamers & Categories
+
+Hide Twitch streamers without unfollowing them. Snooze channels, filter games and categories, and keep favourites visible with a whitelist.
+
+**Version 0.4.1 · Manifest V3 · MIT licensed · No build step or runtime dependencies**
+
+## Features
+
+- Snooze for Today, 24 hours, 3 days, 1 week, 2 weeks, or 1 month.
+- Hide a category, or hide one streamer only while they play it.
+- Keep favourite streamers visible using a whitelist or category exceptions.
+- Manage rules in the Hidden Content panel or the extension toolbar popup.
+- Store rules locally without analytics, tracking servers, or external API calls.
+
+## Install from source in Microsoft Edge
+
+1. Clone or download this repository.
+2. Open `edge://extensions` and enable **Developer mode**.
+3. Choose **Load unpacked** and select the `extension` folder containing `manifest.json`.
+4. Refresh Twitch, then click the moon beside a channel or **Hidden Content** near the sidebar header.
+
+To apply source updates, reload the extension at `edge://extensions` and refresh Twitch. The extension also supports Chromium browsers that implement Manifest V3.
+
+## Development
+
+All runtime source is in `extension/`:
+
+- `core.js`: rule normalization, duration handling, matching and whitelist precedence.
+- `background.js`: local state, serialized changes, expiry alarms and tab observations.
+- `content.js` / `content.css`: Twitch integration and hiding supported cards.
+- `ui.js` / `ui.css`: shared controls, menus and Hidden Content manager.
+- `popup.html` / `popup.js`: toolbar management interface.
+
+Run the dependency-free logic/background regression suite with Node.js 20 or newer:
+
+```sh
+node --test tests/core.test.cjs
+```
+
+For a store package, ZIP the **contents** of `extension/` so that `manifest.json` is at the archive root. Development tests and repository metadata are not needed in the package.
+
+See [usage instructions](extension/README.md), [changelog](extension/CHANGELOG.md), and [verification scope](extension/VERIFICATION.md).
+
+## Privacy and limitations
+
+Read [the privacy policy](PRIVACY.md) for the local data stored and Twitch page content accessed. Permissions are limited to `storage`, `alarms`, and content-script access to `https://www.twitch.tv/*`.
+
+Category matching depends on category text currently exposed by Twitch. Unknown categories remain visible. The extension changes supported cards, not direct channel access, playback, follows, subscriptions, or chat. Rules are saved per browser profile and do not sync across devices.
+
+## Support and contributions
+
+Please [open an issue](https://github.com/raccooovl/twitch-snooze/issues) with the extension version, what happened, and the relevant Twitch page type. Avoid posting passwords, cookies, private messages, or other sensitive information. Issues are public and processed by GitHub under its own privacy policy.
+
+Bug fixes and focused improvements are welcome. Preserve normal channel-link behaviour, the six snooze choices, local-only data handling and minimal permissions. Include relevant regression checks with behaviour changes.
+
+## License
+
+[MIT](LICENSE). Twitch Snooze is independent and is not affiliated with or endorsed by Twitch. Third-party names and trademarks remain the property of their owners.

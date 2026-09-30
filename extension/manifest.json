@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Twitch Snooze — Hide Streamers & Categories",
+  "short_name": "TwitchSnooze",
+  "version": "0.4.1",
+  "description": "Hide Twitch streamers without unfollowing. Snooze channels, filter categories, and whitelist favourites. Saved locally.",
+  "minimum_chrome_version": "120",
+  "permissions": ["storage", "alarms"],
+  "background": { "service_worker": "background.js" },
+  "action": {
+    "default_title": "Twitch Snooze",
+    "default_popup": "popup.html",
+    "default_icon": { "16": "icons/icon-16.png", "32": "icons/icon-32.png" }
+  },
+  "icons": { "16": "icons/icon-16.png", "48": "icons/icon-48.png", "128": "icons/icon-128.png" },
+  "content_scripts": [{
+    "matches": ["https://www.twitch.tv/*"],
+    "js": ["core.js", "ui.js", "content.js"],
+    "css": ["content.css"],
+    "run_at": "document_idle"
+  }],
+  "web_accessible_resources": [{
+    "resources": ["ui.css"],
+    "matches": ["https://www.twitch.tv/*"]
+  }]
+}
