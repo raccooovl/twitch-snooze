@@ -11,9 +11,11 @@ Use the official store version for automatic updates:
 - [Install Twitch Snooze for Chrome](https://chromewebstore.google.com/detail/fhdnokolfhacaokdidacdcabpimhgdkm)
 - [Install Twitch Snooze for Microsoft Edge](https://microsoftedge.microsoft.com/addons/detail/glcfgomfljbmcgomligjegknmhpebohm)
 
-Store versions can differ while an update is under review. Version 0.4.2 updates the extension name and description; its features and data handling are the same as 0.4.1.
+As checked on October 1, 2026, Edge version 0.4.2 is published; Chrome version 0.4.1 is published, with 0.4.2 under review. Store versions can differ while an update is under review. Version 0.4.2 updates the extension name and description; its features and data handling are the same as 0.4.1.
 
 ## Get started
+
+[Product page](https://perfsn-extensions.basstank2004.chatgpt.site/twitch-snooze/) · [Setup and troubleshooting guide](https://perfsn-extensions.basstank2004.chatgpt.site/twitch-snooze/guide/)
 
 1. Install Twitch Snooze from the store for your browser.
 2. Open or refresh Twitch on desktop.
@@ -65,6 +67,8 @@ Read [the privacy policy](PRIVACY.md) for the local data stored and Twitch page 
 Category matching depends on category text currently exposed by Twitch. Unknown categories remain visible. The extension changes supported cards, not direct channel access, playback, follows, subscriptions, or chat. Rules are saved per browser profile and do not sync across devices.
 
 ## Support and contributions
+
+Read the [support guide](SUPPORT.md) for setup help and useful bug-report details.
 
 Please [open an issue](https://github.com/raccooovl/twitch-snooze/issues) or email [support@perfsn.xyz](mailto:support@perfsn.xyz) with the extension version, browser version, what happened, and the relevant Twitch page type. Avoid posting passwords, cookies, private messages, or other sensitive information. Issues are public and processed by GitHub under its own privacy policy.
 
