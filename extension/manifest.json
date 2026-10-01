@@ -1,9 +1,9 @@
 {
   "manifest_version": 3,
-  "name": "Twitch Snooze — Hide Streamers & Categories",
+  "name": "Twitch Snooze: Hide Channels & Categories",
   "short_name": "TwitchSnooze",
-  "version": "0.4.1",
-  "description": "Hide Twitch streamers without unfollowing. Snooze channels, filter categories, and whitelist favourites. Saved locally.",
+  "version": "0.4.2",
+  "description": "Hide Twitch channels and categories without unfollowing. Snooze streamers, whitelist favourites, and manage hidden content.",
   "minimum_chrome_version": "120",
   "permissions": ["storage", "alarms"],
   "background": { "service_worker": "background.js" },

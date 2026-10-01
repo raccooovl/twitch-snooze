@@ -1,8 +1,23 @@
-# Twitch Snooze — Hide Streamers & Categories
+# Twitch Snooze: Hide Channels & Categories
 
-Hide Twitch streamers without unfollowing them. Snooze channels, filter games and categories, and keep favourites visible with a whitelist.
+Clean up Twitch by hiding streamers and categories without unfollowing anyone. Twitch Snooze is a browser extension for desktop Chrome and Microsoft Edge.
 
-**Version 0.4.1 · Manifest V3 · MIT licensed · No build step or runtime dependencies**
+**Source version 0.4.2 · Manifest V3 · MIT licensed · No build step or runtime dependencies**
+
+## Install from a browser store
+
+Use the official store version for automatic updates:
+
+- [Install Twitch Snooze for Chrome](https://chromewebstore.google.com/detail/fhdnokolfhacaokdidacdcabpimhgdkm)
+- [Install Twitch Snooze for Microsoft Edge](https://microsoftedge.microsoft.com/addons/detail/glcfgomfljbmcgomligjegknmhpebohm)
+
+Store versions can differ while an update is under review. Version 0.4.2 updates the extension name and description; its features and data handling are the same as 0.4.1.
+
+## Get started
+
+1. Install Twitch Snooze from the store for your browser.
+2. Open or refresh Twitch on desktop.
+3. Click the moon beside a channel to snooze it, or open **Hidden Content** to manage hidden streamers, categories and your whitelist.
 
 ## Features
 
@@ -12,7 +27,7 @@ Hide Twitch streamers without unfollowing them. Snooze channels, filter games an
 - Manage rules in the Hidden Content panel or the extension toolbar popup.
 - Store rules locally without analytics, tracking servers, or external API calls.
 
-## Install from source in Microsoft Edge
+## Install from source for development
 
 1. Clone or download this repository.
 2. Open `edge://extensions` and enable **Developer mode**.
@@ -20,6 +35,8 @@ Hide Twitch streamers without unfollowing them. Snooze channels, filter games an
 4. Refresh Twitch, then click the moon beside a channel or **Hidden Content** near the sidebar header.
 
 To apply source updates, reload the extension at `edge://extensions` and refresh Twitch. The extension also supports Chromium browsers that implement Manifest V3.
+
+For Chrome, use `chrome://extensions` with the same **Developer mode** and **Load unpacked** steps. Store installation above is recommended for everyday use.
 
 ## Development
 
@@ -49,7 +66,7 @@ Category matching depends on category text currently exposed by Twitch. Unknown 
 
 ## Support and contributions
 
-Please [open an issue](https://github.com/raccooovl/twitch-snooze/issues) with the extension version, what happened, and the relevant Twitch page type. Avoid posting passwords, cookies, private messages, or other sensitive information. Issues are public and processed by GitHub under its own privacy policy.
+Please [open an issue](https://github.com/raccooovl/twitch-snooze/issues) or email [support@perfsn.xyz](mailto:support@perfsn.xyz) with the extension version, browser version, what happened, and the relevant Twitch page type. Avoid posting passwords, cookies, private messages, or other sensitive information. Issues are public and processed by GitHub under its own privacy policy.
 
 Bug fixes and focused improvements are welcome. Preserve normal channel-link behaviour, the six snooze choices, local-only data handling and minimal permissions. Include relevant regression checks with behaviour changes.
 
