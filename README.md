@@ -11,7 +11,7 @@ Use the official store version for automatic updates:
 - [Install Twitch Snooze for Chrome](https://chromewebstore.google.com/detail/fhdnokolfhacaokdidacdcabpimhgdkm)
 - [Install Twitch Snooze for Microsoft Edge](https://microsoftedge.microsoft.com/addons/detail/glcfgomfljbmcgomligjegknmhpebohm)
 
-As checked on October 1, 2026, Edge version 0.4.2 is published; Chrome version 0.4.1 is published, with 0.4.2 under review. Store versions can differ while an update is under review. Version 0.4.2 updates the extension name and description; its features and data handling are the same as 0.4.1.
+As checked on October 3, 2026, version 0.4.2 is published in both Chrome and Edge. Version 0.4.2 updates the extension name and description; its features and data handling are the same as 0.4.1. Store pages show the version currently available to you.
 
 ## Get started
 
@@ -61,6 +61,14 @@ node --test tests/core.test.cjs
 For a store package, ZIP the **contents** of `extension/` so that `manifest.json` is at the archive root. Development tests and repository metadata are not needed in the package.
 
 See [usage instructions](extension/README.md), [changelog](extension/CHANGELOG.md), and [verification scope](extension/VERIFICATION.md).
+
+## Screenshots
+
+![Twitch Snooze inline menu on the Twitch sidebar](https://perfsn-extensions.basstank2004.chatgpt.site/assets/twitch-inline-real.png)
+
+Captured on Twitch. Snoozes leave follows and subscriptions unchanged.
+
+[Product facts and downloadable screenshots](https://perfsn-extensions.basstank2004.chatgpt.site/media/#twitch-snooze)
 
 ## Privacy and limitations
 
