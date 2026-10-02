@@ -15,6 +15,8 @@ As checked on October 1, 2026, Edge version 0.4.2 is published; Chrome version 0
 
 ## Get started
 
+[Hide Twitch channels without unfollowing](https://perfsn-extensions.basstank2004.chatgpt.site/twitch-snooze/hide-channels/?utm_source=github&utm_medium=referral&utm_campaign=discovery_2026_10&utm_content=twitch_readme_guide)
+
 [Product page](https://perfsn-extensions.basstank2004.chatgpt.site/twitch-snooze/) · [Setup and troubleshooting guide](https://perfsn-extensions.basstank2004.chatgpt.site/twitch-snooze/guide/)
 
 1. Install Twitch Snooze from the store for your browser.
