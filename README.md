@@ -68,7 +68,11 @@ See [usage instructions](extension/README.md), [changelog](extension/CHANGELOG.m
 
 Captured on Twitch. Snoozes leave follows and subscriptions unchanged.
 
-[Product facts and downloadable screenshots](https://perfsn-extensions.basstank2004.chatgpt.site/media/#twitch-snooze)
+[Product facts and screenshots](https://perfsn-extensions.basstank2004.chatgpt.site/media/#twitch-snooze) · [Download reviewer kit](https://perfsn-extensions.basstank2004.chatgpt.site/media/reviewer-kit-twitch-snooze.zip)
+
+The reviewer kit includes an offline guide, six review checks, screenshots, labelled saved-screenshot walkthroughs and a blank results sheet.
+
+[Watch the 22-second category and restore tutorial](https://perfsn-extensions.basstank2004.chatgpt.site/assets/twitch-snooze-demo.mp4). Ordered captures of the actual extension interface use fictional channels and local sample rules. This is a local sample demonstration, not a continuous recording on Twitch.
 
 ## Privacy and limitations
 
