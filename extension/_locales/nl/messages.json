@@ -1,0 +1,587 @@
+{
+  "localeCode": {
+    "message": "nl"
+  },
+  "extName": {
+    "message": "Twitch Snooze: kanalen en categorieën verbergen"
+  },
+  "extShortName": {
+    "message": "Twitch Snooze"
+  },
+  "extDescription": {
+    "message": "Verberg Twitch-kanalen, categorieën en trefwoorden zonder te ontvolgen. Verberg streamers tijdelijk of tot je ze weer toont."
+  },
+  "version": {
+    "message": "v{version}"
+  },
+  "presetToday": {
+    "message": "Vandaag"
+  },
+  "presetDay": {
+    "message": "24 uur"
+  },
+  "presetThreeDays": {
+    "message": "3 dagen"
+  },
+  "presetWeek": {
+    "message": "1 week"
+  },
+  "presetFortnight": {
+    "message": "2 weken"
+  },
+  "presetMonth": {
+    "message": "1 maand"
+  },
+  "presetForever": {
+    "message": "Tot ik ze weer toon"
+  },
+  "returnMidnight": {
+    "message": "terug om middernacht"
+  },
+  "returnOn": {
+    "message": "terug {when}"
+  },
+  "returnNever": {
+    "message": "geen einddatum"
+  },
+  "snoozedToday": {
+    "message": "{name} verborgen tot middernacht."
+  },
+  "snoozedDay": {
+    "message": "{name} 24 uur verborgen."
+  },
+  "snoozedThreeDays": {
+    "message": "{name} 3 dagen verborgen."
+  },
+  "snoozedWeek": {
+    "message": "{name} 1 week verborgen."
+  },
+  "snoozedFortnight": {
+    "message": "{name} 2 weken verborgen."
+  },
+  "snoozedMonth": {
+    "message": "{name} 1 maand verborgen."
+  },
+  "snoozedForever": {
+    "message": "{name} verborgen tot je ze weer toont."
+  },
+  "reasonUntil": {
+    "message": "Verborgen tot je ze weer toont"
+  },
+  "reasonBack": {
+    "message": "Terug op {date} om {time}"
+  },
+  "reasonWhilePlaying": {
+    "message": "Verborgen zolang ze {category} spelen"
+  },
+  "reasonCategory": {
+    "message": "{category} is verborgen"
+  },
+  "reasonKeyword": {
+    "message": "Titel of tags bevatten “{keyword}”"
+  },
+  "menuSnoozeTitle": {
+    "message": "{name} verbergen"
+  },
+  "menuSnoozeIntro": {
+    "message": "Verdwijnt uit je zijbalk, Bladeren en zoekresultaten. Je blijft ze volgen."
+  },
+  "menuPlaying": {
+    "message": "Speelt {category}"
+  },
+  "menuHideWhilePlaying": {
+    "message": "Verbergen zolang ze {category} spelen"
+  },
+  "menuHideCategory": {
+    "message": "{category} overal verbergen"
+  },
+  "menuAlwaysShow": {
+    "message": "{name} altijd tonen"
+  },
+  "menuAlwaysShownIntro": {
+    "message": "Altijd zichtbaar. Je verbergregels voor deze streamer staan op pauze."
+  },
+  "menuStopAlwaysShow": {
+    "message": "{name} niet meer altijd tonen"
+  },
+  "menuHiddenTitle": {
+    "message": "{name} is verborgen"
+  },
+  "menuShowNow": {
+    "message": "{name} tonen"
+  },
+  "menuChangeHowLong": {
+    "message": "Andere duur kiezen"
+  },
+  "categoryHideTitle": {
+    "message": "{category} verbergen"
+  },
+  "categoryHideIntro": {
+    "message": "Verbergt deze categorie, haar streams en zijbalkregels. Je kunt favoriete streamers nog steeds doorlaten."
+  },
+  "categoryHideButton": {
+    "message": "Categorie verbergen"
+  },
+  "close": {
+    "message": "Sluiten"
+  },
+  "closeManager": {
+    "message": "Verborgen inhoud sluiten"
+  },
+  "triggerSnooze": {
+    "message": "{name} verbergen"
+  },
+  "triggerHideCategory": {
+    "message": "Categorie {category} verbergen"
+  },
+  "cardSnooze": {
+    "message": "Verbergen"
+  },
+  "tileHide": {
+    "message": "Verbergen"
+  },
+  "toastWhilePlaying": {
+    "message": "{name} verborgen zolang ze {category} spelen."
+  },
+  "toastCategoryHidden": {
+    "message": "{category} verborgen. Laat streamers door via Verborgen inhoud."
+  },
+  "toastCategoryAdded": {
+    "message": "{category} verborgen."
+  },
+  "toastCategoryShown": {
+    "message": "{category} is weer zichtbaar."
+  },
+  "toastAlwaysShow": {
+    "message": "{name} wordt altijd getoond."
+  },
+  "toastStopAlways": {
+    "message": "{name} wordt niet meer altijd getoond."
+  },
+  "toastBack": {
+    "message": "{name} is terug."
+  },
+  "toastKeywordAdded": {
+    "message": "Streams met “{keyword}” verborgen."
+  },
+  "toastKeywordRemoved": {
+    "message": "Streams met “{keyword}” zijn weer zichtbaar."
+  },
+  "toastExceptionRemoved": {
+    "message": "Uitzondering verwijderd."
+  },
+  "toastUndone": {
+    "message": "Wijziging ongedaan gemaakt."
+  },
+  "toastPeekOn": {
+    "message": "Gluren staat aan: verborgen items worden vervaagd getoond."
+  },
+  "toastPeekOff": {
+    "message": "Gluren staat uit."
+  },
+  "undo": {
+    "message": "Ongedaan maken"
+  },
+  "managerTitle": {
+    "message": "Verborgen inhoud"
+  },
+  "managerSubtitle": {
+    "message": "Wat je op Twitch hebt verborgen, en wanneer het terugkomt"
+  },
+  "managerButton": {
+    "message": "Verborgen inhoud"
+  },
+  "managerButtonAria": {
+    "message": "Verborgen inhoud ({count})"
+  },
+  "managerButtonTitle": {
+    "message": "Beheer wat je op Twitch hebt verborgen"
+  },
+  "tabsLabel": {
+    "message": "Onderdelen"
+  },
+  "tabStreamers": {
+    "message": "Streamers"
+  },
+  "tabCategories": {
+    "message": "Categorieën"
+  },
+  "tabKeywords": {
+    "message": "Trefwoorden"
+  },
+  "tabAlwaysShow": {
+    "message": "Altijd tonen"
+  },
+  "searchStreamers": {
+    "message": "Verborgen streamers zoeken"
+  },
+  "show": {
+    "message": "Tonen"
+  },
+  "remove": {
+    "message": "Verwijderen"
+  },
+  "hide": {
+    "message": "Verbergen"
+  },
+  "add": {
+    "message": "Toevoegen"
+  },
+  "moreOptions": {
+    "message": "Meer opties voor {name}"
+  },
+  "changeHowLong": {
+    "message": "Duur wijzigen"
+  },
+  "openChannel": {
+    "message": "Kanaal openen"
+  },
+  "showDespiteRules": {
+    "message": "Toon deze streamer ondanks de gevonden categorieën en trefwoorden"
+  },
+  "emptyStreamers": {
+    "message": "Nog niets verborgen. Gebruik het maantje naast een streamer om die te verbergen."
+  },
+  "emptySearch": {
+    "message": "Geen verborgen streamers gevonden."
+  },
+  "listNote": {
+    "message": "Toont ook categorie- en trefwoordtreffers uit je open Twitch-tabbladen."
+  },
+  "addCategoryPlaceholder": {
+    "message": "Categorie toevoegen…"
+  },
+  "addCategoryLabel": {
+    "message": "Naam van de categorie"
+  },
+  "emptyCategories": {
+    "message": "Nog geen verborgen categorieën."
+  },
+  "categoryEverywhere": {
+    "message": "Overal verborgen"
+  },
+  "categoriesNote": {
+    "message": "Verborgen tot je ze verwijdert. Streamers die je altijd toont, blijven zichtbaar."
+  },
+  "showCategory": {
+    "message": "{category} weer tonen"
+  },
+  "exceptions_one": {
+    "message": "{count} streamer doorgelaten"
+  },
+  "exceptions_other": {
+    "message": "{count} streamers doorgelaten"
+  },
+  "removeException": {
+    "message": "{name} weer verbergen in {category}"
+  },
+  "addKeywordPlaceholder": {
+    "message": "Woord of zin toevoegen…"
+  },
+  "addKeywordLabel": {
+    "message": "Woord of zin om te verbergen"
+  },
+  "keywordsIntro": {
+    "message": "Verbergt streams met dit woord in de titel of tags, zoals drops, 24/7 of een tag."
+  },
+  "emptyKeywords": {
+    "message": "Nog geen trefwoorden."
+  },
+  "hiddenNow_one": {
+    "message": "{count} nu verborgen"
+  },
+  "hiddenNow_other": {
+    "message": "{count} nu verborgen"
+  },
+  "keywordNoMatches": {
+    "message": "Geen treffers in je open tabbladen"
+  },
+  "keywordsNote": {
+    "message": "Zoekt naar hele woorden op streamkaarten en in zoekresultaten. De zijbalk toont geen titels, dus een zijbalkregel verdwijnt alleen als de kaart van dezelfde stream op de pagina overeenkomt."
+  },
+  "removeKeyword": {
+    "message": "{keyword} niet meer verbergen"
+  },
+  "addAlwaysPlaceholder": {
+    "message": "Streamer toevoegen…"
+  },
+  "addAlwaysLabel": {
+    "message": "Kanaalnaam of Twitch-link"
+  },
+  "alwaysIntro": {
+    "message": "Altijd zichtbaar, in elke categorie en op elke lijst."
+  },
+  "emptyAlways": {
+    "message": "Houd favorieten zichtbaar: voeg hierboven een kanaal toe, of gebruik de ster in het menu van een verborgen streamer."
+  },
+  "alwaysShown": {
+    "message": "Altijd zichtbaar"
+  },
+  "rulesPaused": {
+    "message": "Verbergregels gepauzeerd"
+  },
+  "alwaysNote": {
+    "message": "Gaat voor verbergen, categorieën en trefwoorden. Als je iemand verwijdert, gelden de bewaarde regels weer."
+  },
+  "removeAlways": {
+    "message": "{name} niet meer altijd tonen"
+  },
+  "removeAlwaysHelp": {
+    "message": "De bewaarde verbergregels gelden dan weer"
+  },
+  "savedLocally": {
+    "message": "Alleen in deze browser opgeslagen"
+  },
+  "backup": {
+    "message": "Back-up"
+  },
+  "backupHelp": {
+    "message": "Regels opslaan of terugzetten (opent in een nieuw tabblad)"
+  },
+  "escToClose": {
+    "message": "Esc om te sluiten"
+  },
+  "peek": {
+    "message": "Gluren"
+  },
+  "peekOnLabel": {
+    "message": "Gluren aan"
+  },
+  "peekHelp": {
+    "message": "Toon verborgen items vervaagd in plaats van ze te verwijderen"
+  },
+  "peekLabelHidden": {
+    "message": "Verborgen"
+  },
+  "popupInThisTab": {
+    "message": "Kanaal in dit tabblad"
+  },
+  "statusLiveIn": {
+    "message": "Streamt {category}"
+  },
+  "statusOnChannel": {
+    "message": "Open in dit tabblad"
+  },
+  "popupSnooze": {
+    "message": "{name} verbergen"
+  },
+  "popupAlwaysShow": {
+    "message": "Altijd tonen"
+  },
+  "manualSummary": {
+    "message": "Kanaal verbergen op naam"
+  },
+  "manualChannel": {
+    "message": "Kanaalnaam of Twitch-link"
+  },
+  "manualDuration": {
+    "message": "Verbergen voor"
+  },
+  "manualSubmit": {
+    "message": "Kanaal verbergen"
+  },
+  "manualPlaceholder": {
+    "message": "bijv. northernlion"
+  },
+  "reviewLink": {
+    "message": "Beoordeling schrijven"
+  },
+  "reviewAria": {
+    "message": "Schrijf een beoordeling voor Twitch Snooze (opent in een nieuw tabblad)"
+  },
+  "backupPageTitle": {
+    "message": "Twitch Snooze back-up"
+  },
+  "backupTitle": {
+    "message": "Back-up"
+  },
+  "backupIntro": {
+    "message": "Je verborgen streamers, categorieën, trefwoorden en altijd getoonde streamers staan alleen in deze browser. Maak een back-up voordat je opnieuw installeert, of om je regels naar een andere computer te verhuizen."
+  },
+  "backupSaveTitle": {
+    "message": "Back-up maken"
+  },
+  "backupSummary": {
+    "message": "Deze browser bevat {summary}."
+  },
+  "backupNothing": {
+    "message": "nog niets opgeslagen"
+  },
+  "backupDownload": {
+    "message": "Back-upbestand downloaden"
+  },
+  "backupSaved": {
+    "message": "Back-up opgeslagen in je downloads."
+  },
+  "backupRestoreTitle": {
+    "message": "Back-up terugzetten"
+  },
+  "backupRestoreIntro": {
+    "message": "Kies een .json-bestand van Twitch Snooze. Je ziet eerst wat erin staat voordat er iets verandert."
+  },
+  "backupChoose": {
+    "message": "Bestand kiezen…"
+  },
+  "backupNoFile": {
+    "message": "Geen bestand gekozen"
+  },
+  "backupContains": {
+    "message": "Deze back-up bevat {summary}. Kies hoe je hem wilt laden."
+  },
+  "backupMerge": {
+    "message": "Toevoegen aan mijn regels"
+  },
+  "backupReplace": {
+    "message": "Mijn regels vervangen…"
+  },
+  "backupReplaceWarn": {
+    "message": "Vervangen verwijdert al je huidige verborgen streamers, categorieën, trefwoorden en altijd getoonde streamers, en laadt dan de back-up. Dit kan niet ongedaan worden gemaakt."
+  },
+  "backupReplaceConfirm": {
+    "message": "Alles vervangen"
+  },
+  "cancel": {
+    "message": "Annuleren"
+  },
+  "backupMerged": {
+    "message": "Back-up toegevoegd. Deze browser bevat nu {summary}."
+  },
+  "backupReplaced": {
+    "message": "Regels vervangen. Deze browser bevat nu {summary}."
+  },
+  "backupFoot": {
+    "message": "Back-ups bevatten kanaalnamen, categorienamen, trefwoorden en datums. Verlopen items worden overgeslagen. Er wordt niets geüpload, en open Twitch-tabbladen werken direct bij."
+  },
+  "countSnoozes_one": {
+    "message": "{count} verborgen streamer"
+  },
+  "countSnoozes_other": {
+    "message": "{count} verborgen streamers"
+  },
+  "countStreamerRules_one": {
+    "message": "{count} categorieregel voor een streamer"
+  },
+  "countStreamerRules_other": {
+    "message": "{count} categorieregels voor streamers"
+  },
+  "countCategories_one": {
+    "message": "{count} verborgen categorie"
+  },
+  "countCategories_other": {
+    "message": "{count} verborgen categorieën"
+  },
+  "countKeywords_one": {
+    "message": "{count} trefwoord"
+  },
+  "countKeywords_other": {
+    "message": "{count} trefwoorden"
+  },
+  "countAlways_one": {
+    "message": "{count} altijd getoonde streamer"
+  },
+  "countAlways_other": {
+    "message": "{count} altijd getoonde streamers"
+  },
+  "errInvalidRequest": {
+    "message": "Twitch Snooze begreep dit verzoek niet."
+  },
+  "errSave": {
+    "message": "Twitch Snooze kon deze wijziging niet opslaan."
+  },
+  "errChannel": {
+    "message": "Kies een geldig Twitch-kanaal."
+  },
+  "errCategory": {
+    "message": "Kies een geldige Twitch-categorie."
+  },
+  "errCategories": {
+    "message": "Kies geldige Twitch-categorieën."
+  },
+  "errKeywords": {
+    "message": "Kies geldige trefwoorden."
+  },
+  "errAlwaysShown": {
+    "message": "Zet ‘altijd tonen’ voor deze streamer uit voordat je hem verbergt."
+  },
+  "errRuleGone": {
+    "message": "Deze categorieregel bestaat niet meer."
+  },
+  "errNoRule": {
+    "message": "Kies een categorieregel die nog bestaat."
+  },
+  "errAllow": {
+    "message": "Kies of je dit kanaal wilt tonen."
+  },
+  "errKeywordInvalid": {
+    "message": "Voer een woord of zin in met letters of cijfers."
+  },
+  "errKeywordGone": {
+    "message": "Dit trefwoord bestaat niet meer."
+  },
+  "errNoKeyword": {
+    "message": "Kies een trefwoord dat nog bestaat."
+  },
+  "errDuration": {
+    "message": "Kies een geldige duur."
+  },
+  "errClock": {
+    "message": "De klok van je computer lijkt niet te kloppen."
+  },
+  "errSnoozeTime": {
+    "message": "De eindtijd is ongeldig."
+  },
+  "errNotSnoozed": {
+    "message": "Dit kanaal is niet meer verborgen."
+  },
+  "errImportMode": {
+    "message": "Kies of je je regels wilt aanvullen of vervangen."
+  },
+  "errUndo": {
+    "message": "Deze wijziging kan niet ongedaan worden gemaakt."
+  },
+  "errUndoRestore": {
+    "message": "Dit kan niet meer ongedaan worden gemaakt."
+  },
+  "errUndoNewer": {
+    "message": "Er is daarna nog iets gewijzigd of deze actie is verlopen, dus ongedaan maken kan niet meer."
+  },
+  "errUnknown": {
+    "message": "Onbekend verzoek aan Twitch Snooze."
+  },
+  "errNotFromExtension": {
+    "message": "Dit verzoek kwam niet van Twitch Snooze."
+  },
+  "errRegister": {
+    "message": "Alleen een open Twitch-tabblad kan zich aanmelden."
+  },
+  "errLearn": {
+    "message": "Alleen een open Twitch-tabblad kan paginagegevens delen."
+  },
+  "errReload": {
+    "message": "Twitch Snooze is bijgewerkt. Vernieuw dit Twitch-tabblad om verder te gaan."
+  },
+  "errGeneric": {
+    "message": "Twitch Snooze kon niet worden bijgewerkt. Vernieuw dit Twitch-tabblad en probeer het opnieuw."
+  },
+  "errEnterChannel": {
+    "message": "Voer een Twitch-kanaalnaam of -link in."
+  },
+  "errEnterCategory": {
+    "message": "Voer de categorienaam in zoals Twitch hem toont."
+  },
+  "errBackupNotOurs": {
+    "message": "Dit bestand is geen back-up van Twitch Snooze."
+  },
+  "errBackupNewer": {
+    "message": "Deze back-up komt van een nieuwere versie van Twitch Snooze. Werk de extensie eerst bij."
+  },
+  "errBackupEmpty": {
+    "message": "Deze back-up bevat geen actieve regels."
+  },
+  "errBackupJson": {
+    "message": "Dit bestand kon niet als back-up worden gelezen."
+  },
+  "errBackupLarge": {
+    "message": "Dit bestand is te groot voor een back-up van Twitch Snooze."
+  }
+}

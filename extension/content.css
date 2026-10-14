@@ -1,13 +1,16 @@
 [data-tsnz-hidden="true"] { display: none !important; }
+[data-tsnz-peek="true"] { opacity: .4 !important; filter: grayscale(.6); transition: opacity .15s ease, filter .15s ease; }
+[data-tsnz-peek="true"]:hover, [data-tsnz-peek="true"]:focus-within { opacity: .92 !important; filter: none; }
 [data-tsnz-row] { position: relative !important; }
 [data-tsnz-card] { position: relative !important; }
-[data-tsnz-row]:not([data-tsnz-collapsed]) > .side-nav-card__link { padding-right: 29px !important; }
-[data-tsnz-owned="control"] { position: absolute; z-index: 2; right: 3px; top: 50%; transform: translateY(-50%); }
+[data-tsnz-row]:not([data-tsnz-collapsed]) > .side-nav-card__link { padding-right: 31px !important; }
+[data-tsnz-owned="control"] { position: absolute; z-index: 2; right: 4px; top: 50%; transform: translateY(-50%); }
 [data-tsnz-collapsed] > [data-tsnz-owned="control"] { right: 1px; top: 3px; transform: none; }
-[data-tsnz-owned="card-control"] { position: absolute; z-index: 2; right: 7px; top: 7px; opacity: 0; }
+[data-tsnz-owned="card-control"] { position: absolute; z-index: 3; right: 8px; top: 8px; opacity: 0; }
 [data-tsnz-card]:hover > [data-tsnz-owned="card-control"], [data-tsnz-owned="card-control"]:focus-within { opacity: 1; }
-[data-tsnz-owned="inline"] { display: block; margin: 5px 6px 10px; }
-[data-tsnz-owned="manager"] { display: block; margin: 10px 6px; }
-[data-tsnz-owned="floating"] { position: fixed; z-index: 2147483645; display: block; width: 240px; }
-[data-tsnz-owned="manager-panel"] { position: fixed; z-index: 2147483645; display: block; width: min(420px, calc(100vw - 20px)); }
-[data-tsnz-owned="toast"] { position: fixed; z-index: 2147483646; left: 20px; bottom: 20px; width: min(360px, calc(100vw - 40px)); }
+[data-tsnz-owned="peek-chip"] { position: absolute; z-index: 2; left: 8px; top: 8px; pointer-events: none; }
+[data-tsnz-owned="manager"] { display: block; margin: 0 10px 8px; }
+[data-tsnz-owned="floating"] { position: fixed; z-index: 2147483645; display: block; width: 300px; }
+[data-tsnz-owned="manager-panel"] { position: fixed; z-index: 2147483645; display: block; width: min(440px, calc(100vw - 20px)); }
+[data-tsnz-owned="toast"] { position: fixed; z-index: 2147483646; left: 20px; bottom: 20px; width: min(380px, calc(100vw - 40px)); }
+@media (prefers-reduced-motion: reduce) { [data-tsnz-peek="true"] { transition: none; } }

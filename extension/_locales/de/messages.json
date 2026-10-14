@@ -1,0 +1,587 @@
+{
+  "localeCode": {
+    "message": "de"
+  },
+  "extName": {
+    "message": "Twitch Snooze: Kanäle und Kategorien ausblenden"
+  },
+  "extShortName": {
+    "message": "Twitch Snooze"
+  },
+  "extDescription": {
+    "message": "Blende Twitch-Kanäle, Kategorien und Stichwörter aus, ohne zu entfolgen. Streamer vorübergehend oder dauerhaft ausblenden."
+  },
+  "version": {
+    "message": "v{version}"
+  },
+  "presetToday": {
+    "message": "Heute"
+  },
+  "presetDay": {
+    "message": "24 Stunden"
+  },
+  "presetThreeDays": {
+    "message": "3 Tage"
+  },
+  "presetWeek": {
+    "message": "1 Woche"
+  },
+  "presetFortnight": {
+    "message": "2 Wochen"
+  },
+  "presetMonth": {
+    "message": "1 Monat"
+  },
+  "presetForever": {
+    "message": "Bis ich sie wieder einblende"
+  },
+  "returnMidnight": {
+    "message": "zurück um Mitternacht"
+  },
+  "returnOn": {
+    "message": "zurück {when}"
+  },
+  "returnNever": {
+    "message": "kein Enddatum"
+  },
+  "snoozedToday": {
+    "message": "{name} bis Mitternacht ausgeblendet."
+  },
+  "snoozedDay": {
+    "message": "{name} für 24 Stunden ausgeblendet."
+  },
+  "snoozedThreeDays": {
+    "message": "{name} für 3 Tage ausgeblendet."
+  },
+  "snoozedWeek": {
+    "message": "{name} für 1 Woche ausgeblendet."
+  },
+  "snoozedFortnight": {
+    "message": "{name} für 2 Wochen ausgeblendet."
+  },
+  "snoozedMonth": {
+    "message": "{name} für 1 Monat ausgeblendet."
+  },
+  "snoozedForever": {
+    "message": "{name} ausgeblendet, bis du sie wieder einblendest."
+  },
+  "reasonUntil": {
+    "message": "Ausgeblendet, bis du sie wieder einblendest"
+  },
+  "reasonBack": {
+    "message": "Zurück am {date} um {time}"
+  },
+  "reasonWhilePlaying": {
+    "message": "Ausgeblendet, solange {category} läuft"
+  },
+  "reasonCategory": {
+    "message": "{category} ist ausgeblendet"
+  },
+  "reasonKeyword": {
+    "message": "Titel oder Tags enthalten „{keyword}“"
+  },
+  "menuSnoozeTitle": {
+    "message": "{name} ausblenden"
+  },
+  "menuSnoozeIntro": {
+    "message": "Verschwindet aus Seitenleiste, Durchsuchen und Suche. Du folgst weiterhin."
+  },
+  "menuPlaying": {
+    "message": "Spielt {category}"
+  },
+  "menuHideWhilePlaying": {
+    "message": "Ausblenden, solange {category} läuft"
+  },
+  "menuHideCategory": {
+    "message": "{category} überall ausblenden"
+  },
+  "menuAlwaysShow": {
+    "message": "{name} immer anzeigen"
+  },
+  "menuAlwaysShownIntro": {
+    "message": "Wird immer angezeigt. Deine Ausblenderegeln für sie sind pausiert."
+  },
+  "menuStopAlwaysShow": {
+    "message": "{name} nicht mehr immer anzeigen"
+  },
+  "menuHiddenTitle": {
+    "message": "{name} ist ausgeblendet"
+  },
+  "menuShowNow": {
+    "message": "{name} anzeigen"
+  },
+  "menuChangeHowLong": {
+    "message": "Andere Dauer wählen"
+  },
+  "categoryHideTitle": {
+    "message": "{category} ausblenden"
+  },
+  "categoryHideIntro": {
+    "message": "Blendet diese Kategorie, ihre Streams und Seitenleisten-Einträge aus. Lieblingsstreamer kannst du trotzdem durchlassen."
+  },
+  "categoryHideButton": {
+    "message": "Kategorie ausblenden"
+  },
+  "close": {
+    "message": "Schließen"
+  },
+  "closeManager": {
+    "message": "Ausgeblendete Inhalte schließen"
+  },
+  "triggerSnooze": {
+    "message": "{name} ausblenden"
+  },
+  "triggerHideCategory": {
+    "message": "Kategorie {category} ausblenden"
+  },
+  "cardSnooze": {
+    "message": "Ausblenden"
+  },
+  "tileHide": {
+    "message": "Ausblenden"
+  },
+  "toastWhilePlaying": {
+    "message": "{name} ausgeblendet, solange {category} läuft."
+  },
+  "toastCategoryHidden": {
+    "message": "{category} ausgeblendet. Streamer lässt du unter Ausgeblendete Inhalte durch."
+  },
+  "toastCategoryAdded": {
+    "message": "{category} ausgeblendet."
+  },
+  "toastCategoryShown": {
+    "message": "{category} ist wieder sichtbar."
+  },
+  "toastAlwaysShow": {
+    "message": "{name} wird immer angezeigt."
+  },
+  "toastStopAlways": {
+    "message": "{name} wird nicht mehr immer angezeigt."
+  },
+  "toastBack": {
+    "message": "{name} ist zurück."
+  },
+  "toastKeywordAdded": {
+    "message": "Streams mit „{keyword}“ ausgeblendet."
+  },
+  "toastKeywordRemoved": {
+    "message": "Streams mit „{keyword}“ sind wieder sichtbar."
+  },
+  "toastExceptionRemoved": {
+    "message": "Ausnahme entfernt."
+  },
+  "toastUndone": {
+    "message": "Änderung rückgängig gemacht."
+  },
+  "toastPeekOn": {
+    "message": "Spähen ist an: Ausgeblendetes wird blass angezeigt."
+  },
+  "toastPeekOff": {
+    "message": "Spähen ist aus."
+  },
+  "undo": {
+    "message": "Rückgängig"
+  },
+  "managerTitle": {
+    "message": "Ausgeblendete Inhalte"
+  },
+  "managerSubtitle": {
+    "message": "Was du auf Twitch ausgeblendet hast und wann es zurückkommt"
+  },
+  "managerButton": {
+    "message": "Ausgeblendet"
+  },
+  "managerButtonAria": {
+    "message": "Ausgeblendete Inhalte ({count})"
+  },
+  "managerButtonTitle": {
+    "message": "Verwalte, was du auf Twitch ausgeblendet hast"
+  },
+  "tabsLabel": {
+    "message": "Bereiche"
+  },
+  "tabStreamers": {
+    "message": "Streamer"
+  },
+  "tabCategories": {
+    "message": "Kategorien"
+  },
+  "tabKeywords": {
+    "message": "Stichwörter"
+  },
+  "tabAlwaysShow": {
+    "message": "Immer zeigen"
+  },
+  "searchStreamers": {
+    "message": "Ausgeblendete Streamer suchen"
+  },
+  "show": {
+    "message": "Anzeigen"
+  },
+  "remove": {
+    "message": "Entfernen"
+  },
+  "hide": {
+    "message": "Ausblenden"
+  },
+  "add": {
+    "message": "Hinzufügen"
+  },
+  "moreOptions": {
+    "message": "Weitere Optionen für {name}"
+  },
+  "changeHowLong": {
+    "message": "Dauer ändern"
+  },
+  "openChannel": {
+    "message": "Kanal öffnen"
+  },
+  "showDespiteRules": {
+    "message": "Diesen Streamer trotz passender Kategorien und Stichwörter anzeigen"
+  },
+  "emptyStreamers": {
+    "message": "Noch nichts ausgeblendet. Nutze den Mond neben einem Streamer, um ihn auszublenden."
+  },
+  "emptySearch": {
+    "message": "Keine ausgeblendeten Streamer gefunden."
+  },
+  "listNote": {
+    "message": "Zeigt auch Kategorie- und Stichworttreffer aus deinen offenen Twitch-Tabs."
+  },
+  "addCategoryPlaceholder": {
+    "message": "Kategorie hinzufügen…"
+  },
+  "addCategoryLabel": {
+    "message": "Name der Kategorie"
+  },
+  "emptyCategories": {
+    "message": "Noch keine ausgeblendeten Kategorien."
+  },
+  "categoryEverywhere": {
+    "message": "Überall ausgeblendet"
+  },
+  "categoriesNote": {
+    "message": "Ausgeblendet, bis du sie entfernst. Streamer, die du immer anzeigst, bleiben sichtbar."
+  },
+  "showCategory": {
+    "message": "{category} wieder anzeigen"
+  },
+  "exceptions_one": {
+    "message": "{count} Streamer durchgelassen"
+  },
+  "exceptions_other": {
+    "message": "{count} Streamer durchgelassen"
+  },
+  "removeException": {
+    "message": "{name} in {category} wieder ausblenden"
+  },
+  "addKeywordPlaceholder": {
+    "message": "Wort oder Ausdruck hinzufügen…"
+  },
+  "addKeywordLabel": {
+    "message": "Auszublendendes Wort oder Ausdruck"
+  },
+  "keywordsIntro": {
+    "message": "Blendet Streams aus, deren Titel oder Tags dieses Wort enthalten, etwa drops, 24/7 oder einen Tag."
+  },
+  "emptyKeywords": {
+    "message": "Noch keine Stichwörter."
+  },
+  "hiddenNow_one": {
+    "message": "{count} gerade ausgeblendet"
+  },
+  "hiddenNow_other": {
+    "message": "{count} gerade ausgeblendet"
+  },
+  "keywordNoMatches": {
+    "message": "Keine Treffer in deinen offenen Tabs"
+  },
+  "keywordsNote": {
+    "message": "Sucht ganze Wörter auf Stream-Karten und in Suchergebnissen. Die Seitenleiste zeigt keine Titel; ein Eintrag dort wird nur ausgeblendet, wenn die Karte desselben Streams auf der Seite passt."
+  },
+  "removeKeyword": {
+    "message": "{keyword} nicht mehr ausblenden"
+  },
+  "addAlwaysPlaceholder": {
+    "message": "Streamer hinzufügen…"
+  },
+  "addAlwaysLabel": {
+    "message": "Kanalname oder Twitch-Link"
+  },
+  "alwaysIntro": {
+    "message": "Immer sichtbar, in jeder Kategorie und jeder Liste."
+  },
+  "emptyAlways": {
+    "message": "Halte Favoriten sichtbar: Füge oben einen Kanal hinzu oder nutze den Stern im Menü eines ausgeblendeten Streamers."
+  },
+  "alwaysShown": {
+    "message": "Wird immer angezeigt"
+  },
+  "rulesPaused": {
+    "message": "Ausblenderegeln pausiert"
+  },
+  "alwaysNote": {
+    "message": "Hat Vorrang vor Ausblenden, Kategorien und Stichwörtern. Entfernst du jemanden, gelten die gespeicherten Regeln wieder."
+  },
+  "removeAlways": {
+    "message": "{name} nicht mehr immer anzeigen"
+  },
+  "removeAlwaysHelp": {
+    "message": "Ihre gespeicherten Ausblenderegeln gelten dann wieder"
+  },
+  "savedLocally": {
+    "message": "Nur in diesem Browser gespeichert"
+  },
+  "backup": {
+    "message": "Sicherung"
+  },
+  "backupHelp": {
+    "message": "Regeln sichern oder wiederherstellen (öffnet neuen Tab)"
+  },
+  "escToClose": {
+    "message": "Esc zum Schließen"
+  },
+  "peek": {
+    "message": "Spähen"
+  },
+  "peekOnLabel": {
+    "message": "Spähen an"
+  },
+  "peekHelp": {
+    "message": "Ausgeblendetes blass anzeigen statt es zu entfernen"
+  },
+  "peekLabelHidden": {
+    "message": "Ausgeblendet"
+  },
+  "popupInThisTab": {
+    "message": "Kanal in diesem Tab"
+  },
+  "statusLiveIn": {
+    "message": "Streamt {category}"
+  },
+  "statusOnChannel": {
+    "message": "In diesem Tab geöffnet"
+  },
+  "popupSnooze": {
+    "message": "{name} ausblenden"
+  },
+  "popupAlwaysShow": {
+    "message": "Immer zeigen"
+  },
+  "manualSummary": {
+    "message": "Kanal per Name ausblenden"
+  },
+  "manualChannel": {
+    "message": "Kanalname oder Twitch-Link"
+  },
+  "manualDuration": {
+    "message": "Ausblenden für"
+  },
+  "manualSubmit": {
+    "message": "Kanal ausblenden"
+  },
+  "manualPlaceholder": {
+    "message": "z. B. northernlion"
+  },
+  "reviewLink": {
+    "message": "Bewertung schreiben"
+  },
+  "reviewAria": {
+    "message": "Bewertung für Twitch Snooze schreiben (öffnet neuen Tab)"
+  },
+  "backupPageTitle": {
+    "message": "Twitch Snooze Sicherung"
+  },
+  "backupTitle": {
+    "message": "Sicherung"
+  },
+  "backupIntro": {
+    "message": "Deine ausgeblendeten Streamer, Kategorien, Stichwörter und immer angezeigten Streamer sind nur in diesem Browser gespeichert. Sichere sie vor einer Neuinstallation oder um sie auf einen anderen Computer zu übertragen."
+  },
+  "backupSaveTitle": {
+    "message": "Sicherung erstellen"
+  },
+  "backupSummary": {
+    "message": "Dieser Browser enthält {summary}."
+  },
+  "backupNothing": {
+    "message": "noch nichts gespeichert"
+  },
+  "backupDownload": {
+    "message": "Sicherungsdatei herunterladen"
+  },
+  "backupSaved": {
+    "message": "Sicherung in deinen Downloads gespeichert."
+  },
+  "backupRestoreTitle": {
+    "message": "Aus Sicherung wiederherstellen"
+  },
+  "backupRestoreIntro": {
+    "message": "Wähle eine von Twitch Snooze gespeicherte .json-Datei. Du siehst den Inhalt, bevor sich etwas ändert."
+  },
+  "backupChoose": {
+    "message": "Datei wählen…"
+  },
+  "backupNoFile": {
+    "message": "Keine Datei gewählt"
+  },
+  "backupContains": {
+    "message": "Diese Sicherung enthält {summary}. Wähle, wie sie geladen wird."
+  },
+  "backupMerge": {
+    "message": "Zu meinen Regeln hinzufügen"
+  },
+  "backupReplace": {
+    "message": "Meine Regeln ersetzen…"
+  },
+  "backupReplaceWarn": {
+    "message": "Ersetzen entfernt alle aktuellen Ausblendungen, Kategorien, Stichwörter und immer angezeigten Streamer und lädt dann die Sicherung. Das lässt sich nicht rückgängig machen."
+  },
+  "backupReplaceConfirm": {
+    "message": "Alles ersetzen"
+  },
+  "cancel": {
+    "message": "Abbrechen"
+  },
+  "backupMerged": {
+    "message": "Sicherung hinzugefügt. Dieser Browser enthält jetzt {summary}."
+  },
+  "backupReplaced": {
+    "message": "Regeln ersetzt. Dieser Browser enthält jetzt {summary}."
+  },
+  "backupFoot": {
+    "message": "Sicherungen enthalten Kanalnamen, Kategorienamen, Stichwörter und Daten. Abgelaufenes wird weggelassen. Nichts wird hochgeladen, und offene Twitch-Tabs aktualisieren sich sofort."
+  },
+  "countSnoozes_one": {
+    "message": "{count} ausgeblendeter Streamer"
+  },
+  "countSnoozes_other": {
+    "message": "{count} ausgeblendete Streamer"
+  },
+  "countStreamerRules_one": {
+    "message": "{count} Kategorie-Regel für Streamer"
+  },
+  "countStreamerRules_other": {
+    "message": "{count} Kategorie-Regeln für Streamer"
+  },
+  "countCategories_one": {
+    "message": "{count} ausgeblendete Kategorie"
+  },
+  "countCategories_other": {
+    "message": "{count} ausgeblendete Kategorien"
+  },
+  "countKeywords_one": {
+    "message": "{count} Stichwort"
+  },
+  "countKeywords_other": {
+    "message": "{count} Stichwörter"
+  },
+  "countAlways_one": {
+    "message": "{count} immer angezeigter Streamer"
+  },
+  "countAlways_other": {
+    "message": "{count} immer angezeigte Streamer"
+  },
+  "errInvalidRequest": {
+    "message": "Twitch Snooze hat diese Anfrage nicht verstanden."
+  },
+  "errSave": {
+    "message": "Twitch Snooze konnte diese Änderung nicht speichern."
+  },
+  "errChannel": {
+    "message": "Wähle einen gültigen Twitch-Kanal."
+  },
+  "errCategory": {
+    "message": "Wähle eine gültige Twitch-Kategorie."
+  },
+  "errCategories": {
+    "message": "Wähle gültige Twitch-Kategorien."
+  },
+  "errKeywords": {
+    "message": "Wähle gültige Stichwörter."
+  },
+  "errAlwaysShown": {
+    "message": "Beende „Immer anzeigen“ für diesen Streamer, bevor du ihn ausblendest."
+  },
+  "errRuleGone": {
+    "message": "Diese Kategorie-Regel gibt es nicht mehr."
+  },
+  "errNoRule": {
+    "message": "Wähle eine Kategorie-Regel, die noch existiert."
+  },
+  "errAllow": {
+    "message": "Wähle, ob dieser Kanal angezeigt wird."
+  },
+  "errKeywordInvalid": {
+    "message": "Gib ein Wort oder einen Ausdruck mit Buchstaben oder Zahlen ein."
+  },
+  "errKeywordGone": {
+    "message": "Dieses Stichwort gibt es nicht mehr."
+  },
+  "errNoKeyword": {
+    "message": "Wähle ein Stichwort, das noch existiert."
+  },
+  "errDuration": {
+    "message": "Wähle eine gültige Dauer."
+  },
+  "errClock": {
+    "message": "Die Uhr deines Computers scheint falsch zu gehen."
+  },
+  "errSnoozeTime": {
+    "message": "Das Ende der Ausblendung ist ungültig."
+  },
+  "errNotSnoozed": {
+    "message": "Dieser Kanal ist nicht mehr ausgeblendet."
+  },
+  "errImportMode": {
+    "message": "Wähle, ob deine Regeln ergänzt oder ersetzt werden."
+  },
+  "errUndo": {
+    "message": "Diese Änderung lässt sich nicht rückgängig machen."
+  },
+  "errUndoRestore": {
+    "message": "Das lässt sich nicht mehr rückgängig machen."
+  },
+  "errUndoNewer": {
+    "message": "Inzwischen gab es eine neuere Änderung oder die Frist ist abgelaufen, daher geht Rückgängig nicht mehr."
+  },
+  "errUnknown": {
+    "message": "Unbekannte Twitch-Snooze-Anfrage."
+  },
+  "errNotFromExtension": {
+    "message": "Diese Anfrage kam nicht von Twitch Snooze."
+  },
+  "errRegister": {
+    "message": "Nur ein offener Twitch-Tab kann sich anmelden."
+  },
+  "errLearn": {
+    "message": "Nur ein offener Twitch-Tab kann Seitendetails teilen."
+  },
+  "errReload": {
+    "message": "Twitch Snooze wurde aktualisiert. Lade diesen Twitch-Tab neu, um es weiter zu nutzen."
+  },
+  "errGeneric": {
+    "message": "Twitch Snooze konnte nicht aktualisiert werden. Lade diesen Twitch-Tab neu und versuche es erneut."
+  },
+  "errEnterChannel": {
+    "message": "Gib einen Twitch-Kanalnamen oder -Link ein."
+  },
+  "errEnterCategory": {
+    "message": "Gib den Kategorienamen so ein, wie Twitch ihn anzeigt."
+  },
+  "errBackupNotOurs": {
+    "message": "Diese Datei ist keine Twitch-Snooze-Sicherung."
+  },
+  "errBackupNewer": {
+    "message": "Diese Sicherung stammt von einer neueren Twitch-Snooze-Version. Aktualisiere zuerst die Erweiterung."
+  },
+  "errBackupEmpty": {
+    "message": "Diese Sicherung enthält keine aktiven Regeln."
+  },
+  "errBackupJson": {
+    "message": "Diese Datei konnte nicht als Sicherung gelesen werden."
+  },
+  "errBackupLarge": {
+    "message": "Diese Datei ist zu groß für eine Twitch-Snooze-Sicherung."
+  }
+}

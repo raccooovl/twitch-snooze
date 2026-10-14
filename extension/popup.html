@@ -4,35 +4,42 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Twitch Snooze</title>
+  <link rel="stylesheet" href="fonts.css">
   <link rel="stylesheet" href="ui.css">
 </head>
 <body class="sz-theme sz-popup">
   <header class="sz-popup-header">
-    <span class="sz-brand" id="brand" aria-hidden="true"></span>
-    <div><span class="sz-eyebrow">Twitch Snooze</span><h1>Hidden Content</h1></div>
+    <span id="brand" aria-hidden="true" style="display:contents"></span>
+    <h1 data-i18n="extShortName">Twitch Snooze</h1>
     <span class="sz-version" id="version"></span>
+    <span id="peek-slot" style="display:contents"></span>
   </header>
+  <section id="current-channel" class="sz-current" data-i18n-aria-label="popupInThisTab" hidden></section>
+  <div id="manager-tabs"></div>
   <main class="sz-popup-body">
-    <div id="manager-tabs"></div>
     <section id="streamer-view">
-    <div class="sz-search-row"><input type="search" class="sz-input sz-search" id="channel-search" placeholder="Search hidden…" aria-label="Search hidden streamers"><span class="sz-count" id="count" title="Hidden streamers">0</span></div>
-    <div id="channels"><div class="sz-empty">Loading your hidden streamers…</div></div>
-    <div id="duration-editor"></div>
-    <div id="scope-note"></div>
-    <details class="sz-manual">
-      <summary>Snooze a channel</summary>
-      <form id="snooze-form">
-        <label>Channel name or Twitch link<input class="sz-input" id="channel-input" name="channel" placeholder="e.g. northernlion" autocomplete="off" maxlength="150" required></label>
-        <label>Return after<select class="sz-input" id="duration-input" name="duration"></select></label>
-        <button class="sz-submit" type="submit">Snooze channel</button>
-      </form>
-    </details>
+      <label class="sz-search-field" id="search-field"><input type="search" class="sz-search" id="channel-search" data-i18n-placeholder="searchStreamers" data-i18n-aria-label="searchStreamers"></label>
+      <div id="channels"></div>
+      <details class="sz-manual">
+        <summary data-i18n="manualSummary"></summary>
+        <form id="snooze-form">
+          <label><span data-i18n="manualChannel"></span><input class="sz-input" id="channel-input" name="channel" data-i18n-placeholder="manualPlaceholder" autocomplete="off" maxlength="150" required></label>
+          <label><span data-i18n="manualDuration"></span><select class="sz-input" id="duration-input" name="duration"></select></label>
+          <button class="sz-primary" type="submit" data-i18n="manualSubmit"></button>
+        </form>
+      </details>
     </section>
     <section id="category-view" hidden></section>
+    <section id="keyword-view" hidden></section>
     <section id="whitelist-view" hidden></section>
     <div id="feedback" aria-live="polite"></div>
   </main>
-  <footer class="sz-popup-footer">On this device · No tracking</footer>
+  <footer class="sz-popup-footer">
+    <span data-i18n="savedLocally"></span>
+    <button type="button" id="backup-link" class="sz-link-button" data-i18n="backup" data-i18n-title="backupHelp"></button>
+    <a id="review-link" href="https://chromewebstore.google.com/detail/fhdnokolfhacaokdidacdcabpimhgdkm/reviews" target="_blank" rel="noopener noreferrer" data-i18n-aria-label="reviewAria"><span data-i18n="reviewLink"></span></a>
+  </footer>
+  <script src="i18n.js"></script>
   <script src="core.js"></script>
   <script src="ui.js"></script>
   <script src="popup.js"></script>

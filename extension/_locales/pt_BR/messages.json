@@ -1,0 +1,587 @@
+{
+  "localeCode": {
+    "message": "pt-BR"
+  },
+  "extName": {
+    "message": "Twitch Snooze: oculte canais e categorias"
+  },
+  "extShortName": {
+    "message": "Twitch Snooze"
+  },
+  "extDescription": {
+    "message": "Oculte canais, categorias e palavras-chave da Twitch sem deixar de seguir. Oculte streamers por um tempo ou até mostrar de novo."
+  },
+  "version": {
+    "message": "v{version}"
+  },
+  "presetToday": {
+    "message": "Hoje"
+  },
+  "presetDay": {
+    "message": "24 horas"
+  },
+  "presetThreeDays": {
+    "message": "3 dias"
+  },
+  "presetWeek": {
+    "message": "1 semana"
+  },
+  "presetFortnight": {
+    "message": "2 semanas"
+  },
+  "presetMonth": {
+    "message": "1 mês"
+  },
+  "presetForever": {
+    "message": "Até eu mostrar de novo"
+  },
+  "returnMidnight": {
+    "message": "volta à meia-noite"
+  },
+  "returnOn": {
+    "message": "volta {when}"
+  },
+  "returnNever": {
+    "message": "sem data de término"
+  },
+  "snoozedToday": {
+    "message": "{name} oculto até a meia-noite."
+  },
+  "snoozedDay": {
+    "message": "{name} oculto por 24 horas."
+  },
+  "snoozedThreeDays": {
+    "message": "{name} oculto por 3 dias."
+  },
+  "snoozedWeek": {
+    "message": "{name} oculto por 1 semana."
+  },
+  "snoozedFortnight": {
+    "message": "{name} oculto por 2 semanas."
+  },
+  "snoozedMonth": {
+    "message": "{name} oculto por 1 mês."
+  },
+  "snoozedForever": {
+    "message": "{name} oculto até você mostrar de novo."
+  },
+  "reasonUntil": {
+    "message": "Oculto até você mostrar de novo"
+  },
+  "reasonBack": {
+    "message": "Volta em {date} às {time}"
+  },
+  "reasonWhilePlaying": {
+    "message": "Oculto enquanto jogar {category}"
+  },
+  "reasonCategory": {
+    "message": "{category} está oculta"
+  },
+  "reasonKeyword": {
+    "message": "O título ou as tags contêm “{keyword}”"
+  },
+  "menuSnoozeTitle": {
+    "message": "Ocultar {name}"
+  },
+  "menuSnoozeIntro": {
+    "message": "Some da barra lateral, de Navegar e da busca. Você continua seguindo."
+  },
+  "menuPlaying": {
+    "message": "Jogando {category}"
+  },
+  "menuHideWhilePlaying": {
+    "message": "Ocultar enquanto jogar {category}"
+  },
+  "menuHideCategory": {
+    "message": "Ocultar {category} em todo lugar"
+  },
+  "menuAlwaysShow": {
+    "message": "Sempre mostrar {name}"
+  },
+  "menuAlwaysShownIntro": {
+    "message": "Sempre visível. Suas regras para ocultar estão pausadas."
+  },
+  "menuStopAlwaysShow": {
+    "message": "Parar de sempre mostrar {name}"
+  },
+  "menuHiddenTitle": {
+    "message": "{name} está oculto"
+  },
+  "menuShowNow": {
+    "message": "Mostrar {name}"
+  },
+  "menuChangeHowLong": {
+    "message": "Escolher outra duração"
+  },
+  "categoryHideTitle": {
+    "message": "Ocultar {category}"
+  },
+  "categoryHideIntro": {
+    "message": "Oculta esta categoria, as lives e as linhas da barra lateral. Você ainda pode deixar passar seus streamers favoritos."
+  },
+  "categoryHideButton": {
+    "message": "Ocultar categoria"
+  },
+  "close": {
+    "message": "Fechar"
+  },
+  "closeManager": {
+    "message": "Fechar Conteúdo oculto"
+  },
+  "triggerSnooze": {
+    "message": "Ocultar {name}"
+  },
+  "triggerHideCategory": {
+    "message": "Ocultar a categoria {category}"
+  },
+  "cardSnooze": {
+    "message": "Ocultar"
+  },
+  "tileHide": {
+    "message": "Ocultar"
+  },
+  "toastWhilePlaying": {
+    "message": "{name} oculto enquanto jogar {category}."
+  },
+  "toastCategoryHidden": {
+    "message": "{category} oculta. Deixe streamers passarem em Conteúdo oculto."
+  },
+  "toastCategoryAdded": {
+    "message": "{category} oculta."
+  },
+  "toastCategoryShown": {
+    "message": "{category} está visível de novo."
+  },
+  "toastAlwaysShow": {
+    "message": "{name} sempre será mostrado."
+  },
+  "toastStopAlways": {
+    "message": "{name} não é mais sempre mostrado."
+  },
+  "toastBack": {
+    "message": "{name} voltou."
+  },
+  "toastKeywordAdded": {
+    "message": "Lives com “{keyword}” ocultas."
+  },
+  "toastKeywordRemoved": {
+    "message": "Lives com “{keyword}” estão visíveis de novo."
+  },
+  "toastExceptionRemoved": {
+    "message": "Exceção removida."
+  },
+  "toastUndone": {
+    "message": "Alteração desfeita."
+  },
+  "toastPeekOn": {
+    "message": "Espiar ativado: itens ocultos aparecem esmaecidos."
+  },
+  "toastPeekOff": {
+    "message": "Espiar desativado."
+  },
+  "undo": {
+    "message": "Desfazer"
+  },
+  "managerTitle": {
+    "message": "Conteúdo oculto"
+  },
+  "managerSubtitle": {
+    "message": "O que você ocultou na Twitch e quando volta"
+  },
+  "managerButton": {
+    "message": "Conteúdo oculto"
+  },
+  "managerButtonAria": {
+    "message": "Conteúdo oculto ({count})"
+  },
+  "managerButtonTitle": {
+    "message": "Gerencie o que você ocultou na Twitch"
+  },
+  "tabsLabel": {
+    "message": "Seções"
+  },
+  "tabStreamers": {
+    "message": "Streamers"
+  },
+  "tabCategories": {
+    "message": "Categorias"
+  },
+  "tabKeywords": {
+    "message": "Palavras"
+  },
+  "tabAlwaysShow": {
+    "message": "Sempre"
+  },
+  "searchStreamers": {
+    "message": "Buscar streamers ocultos"
+  },
+  "show": {
+    "message": "Mostrar"
+  },
+  "remove": {
+    "message": "Remover"
+  },
+  "hide": {
+    "message": "Ocultar"
+  },
+  "add": {
+    "message": "Adicionar"
+  },
+  "moreOptions": {
+    "message": "Mais opções para {name}"
+  },
+  "changeHowLong": {
+    "message": "Mudar duração"
+  },
+  "openChannel": {
+    "message": "Abrir canal"
+  },
+  "showDespiteRules": {
+    "message": "Mostrar este streamer apesar das categorias e palavras correspondentes"
+  },
+  "emptyStreamers": {
+    "message": "Nada oculto ainda. Use a lua ao lado de um streamer para ocultá-lo."
+  },
+  "emptySearch": {
+    "message": "Nenhum streamer oculto corresponde à busca."
+  },
+  "listNote": {
+    "message": "Também mostra correspondências de categorias e palavras nas suas abas abertas da Twitch."
+  },
+  "addCategoryPlaceholder": {
+    "message": "Adicionar uma categoria…"
+  },
+  "addCategoryLabel": {
+    "message": "Nome da categoria"
+  },
+  "emptyCategories": {
+    "message": "Nenhuma categoria oculta ainda."
+  },
+  "categoryEverywhere": {
+    "message": "Oculta em todo lugar"
+  },
+  "categoriesNote": {
+    "message": "Ocultas até você removê-las. Streamers que você sempre mostra continuam visíveis."
+  },
+  "showCategory": {
+    "message": "Mostrar {category} de novo"
+  },
+  "exceptions_one": {
+    "message": "{count} streamer liberado"
+  },
+  "exceptions_other": {
+    "message": "{count} streamers liberados"
+  },
+  "removeException": {
+    "message": "Ocultar {name} em {category} de novo"
+  },
+  "addKeywordPlaceholder": {
+    "message": "Adicionar uma palavra ou frase…"
+  },
+  "addKeywordLabel": {
+    "message": "Palavra ou frase para ocultar"
+  },
+  "keywordsIntro": {
+    "message": "Oculta lives cujo título ou tags contêm esta palavra, como drops, 24/7 ou uma tag."
+  },
+  "emptyKeywords": {
+    "message": "Nenhuma palavra-chave ainda."
+  },
+  "hiddenNow_one": {
+    "message": "{count} oculta agora"
+  },
+  "hiddenNow_other": {
+    "message": "{count} ocultas agora"
+  },
+  "keywordNoMatches": {
+    "message": "Nenhuma correspondência nas abas abertas"
+  },
+  "keywordsNote": {
+    "message": "Procura palavras inteiras nos cards de lives e na busca. A barra lateral não mostra títulos, então uma linha só é ocultada quando o card da mesma live na página corresponde."
+  },
+  "removeKeyword": {
+    "message": "Parar de ocultar {keyword}"
+  },
+  "addAlwaysPlaceholder": {
+    "message": "Adicionar um streamer…"
+  },
+  "addAlwaysLabel": {
+    "message": "Nome do canal ou link da Twitch"
+  },
+  "alwaysIntro": {
+    "message": "Sempre visíveis, em todas as categorias e listas."
+  },
+  "emptyAlways": {
+    "message": "Mantenha seus favoritos visíveis: adicione um canal acima ou use a estrela no menu de um streamer oculto."
+  },
+  "alwaysShown": {
+    "message": "Sempre visível"
+  },
+  "rulesPaused": {
+    "message": "Regras de ocultar pausadas"
+  },
+  "alwaysNote": {
+    "message": "Tem prioridade sobre ocultar, categorias e palavras. Ao remover alguém, as regras salvas voltam a valer."
+  },
+  "removeAlways": {
+    "message": "Parar de sempre mostrar {name}"
+  },
+  "removeAlwaysHelp": {
+    "message": "As regras salvas voltam a valer"
+  },
+  "savedLocally": {
+    "message": "Salvo apenas neste navegador"
+  },
+  "backup": {
+    "message": "Backup"
+  },
+  "backupHelp": {
+    "message": "Salve ou restaure suas regras (abre em nova aba)"
+  },
+  "escToClose": {
+    "message": "Esc para fechar"
+  },
+  "peek": {
+    "message": "Espiar"
+  },
+  "peekOnLabel": {
+    "message": "Espiando"
+  },
+  "peekHelp": {
+    "message": "Mostrar itens ocultos esmaecidos em vez de removê-los"
+  },
+  "peekLabelHidden": {
+    "message": "Oculto"
+  },
+  "popupInThisTab": {
+    "message": "Canal nesta aba"
+  },
+  "statusLiveIn": {
+    "message": "Transmitindo {category}"
+  },
+  "statusOnChannel": {
+    "message": "Aberto nesta aba"
+  },
+  "popupSnooze": {
+    "message": "Ocultar {name}"
+  },
+  "popupAlwaysShow": {
+    "message": "Sempre mostrar"
+  },
+  "manualSummary": {
+    "message": "Ocultar um canal pelo nome"
+  },
+  "manualChannel": {
+    "message": "Nome do canal ou link da Twitch"
+  },
+  "manualDuration": {
+    "message": "Ocultar por"
+  },
+  "manualSubmit": {
+    "message": "Ocultar canal"
+  },
+  "manualPlaceholder": {
+    "message": "ex.: northernlion"
+  },
+  "reviewLink": {
+    "message": "Deixar uma avaliação"
+  },
+  "reviewAria": {
+    "message": "Avaliar o Twitch Snooze (abre em nova aba)"
+  },
+  "backupPageTitle": {
+    "message": "Backup do Twitch Snooze"
+  },
+  "backupTitle": {
+    "message": "Backup"
+  },
+  "backupIntro": {
+    "message": "Seus streamers, categorias e palavras ocultos, e os streamers sempre mostrados, ficam salvos só neste navegador. Faça um backup antes de reinstalar ou para levar suas regras a outro computador."
+  },
+  "backupSaveTitle": {
+    "message": "Salvar um backup"
+  },
+  "backupSummary": {
+    "message": "Este navegador tem {summary}."
+  },
+  "backupNothing": {
+    "message": "nada salvo ainda"
+  },
+  "backupDownload": {
+    "message": "Baixar arquivo de backup"
+  },
+  "backupSaved": {
+    "message": "Backup salvo nos seus downloads."
+  },
+  "backupRestoreTitle": {
+    "message": "Restaurar um backup"
+  },
+  "backupRestoreIntro": {
+    "message": "Escolha um arquivo .json salvo pelo Twitch Snooze. Você verá o conteúdo antes de qualquer mudança."
+  },
+  "backupChoose": {
+    "message": "Escolher arquivo…"
+  },
+  "backupNoFile": {
+    "message": "Nenhum arquivo escolhido"
+  },
+  "backupContains": {
+    "message": "Este backup tem {summary}. Escolha como carregar."
+  },
+  "backupMerge": {
+    "message": "Adicionar às minhas regras"
+  },
+  "backupReplace": {
+    "message": "Substituir minhas regras…"
+  },
+  "backupReplaceWarn": {
+    "message": "Substituir remove tudo o que está oculto, as categorias, as palavras e os streamers sempre mostrados, e depois carrega o backup. Não dá para desfazer."
+  },
+  "backupReplaceConfirm": {
+    "message": "Substituir tudo"
+  },
+  "cancel": {
+    "message": "Cancelar"
+  },
+  "backupMerged": {
+    "message": "Backup adicionado. Este navegador agora tem {summary}."
+  },
+  "backupReplaced": {
+    "message": "Regras substituídas. Este navegador agora tem {summary}."
+  },
+  "backupFoot": {
+    "message": "Backups contêm nomes de canais e categorias, palavras-chave e datas. Itens vencidos ficam de fora. Nada é enviado, e as abas abertas da Twitch atualizam na hora."
+  },
+  "countSnoozes_one": {
+    "message": "{count} streamer oculto"
+  },
+  "countSnoozes_other": {
+    "message": "{count} streamers ocultos"
+  },
+  "countStreamerRules_one": {
+    "message": "{count} regra de categoria para streamer"
+  },
+  "countStreamerRules_other": {
+    "message": "{count} regras de categoria para streamers"
+  },
+  "countCategories_one": {
+    "message": "{count} categoria oculta"
+  },
+  "countCategories_other": {
+    "message": "{count} categorias ocultas"
+  },
+  "countKeywords_one": {
+    "message": "{count} palavra-chave"
+  },
+  "countKeywords_other": {
+    "message": "{count} palavras-chave"
+  },
+  "countAlways_one": {
+    "message": "{count} streamer sempre visível"
+  },
+  "countAlways_other": {
+    "message": "{count} streamers sempre visíveis"
+  },
+  "errInvalidRequest": {
+    "message": "O Twitch Snooze não entendeu este pedido."
+  },
+  "errSave": {
+    "message": "O Twitch Snooze não conseguiu salvar esta alteração."
+  },
+  "errChannel": {
+    "message": "Escolha um canal válido da Twitch."
+  },
+  "errCategory": {
+    "message": "Escolha uma categoria válida da Twitch."
+  },
+  "errCategories": {
+    "message": "Escolha categorias válidas da Twitch."
+  },
+  "errKeywords": {
+    "message": "Escolha palavras-chave válidas."
+  },
+  "errAlwaysShown": {
+    "message": "Pare de sempre mostrar este streamer antes de ocultá-lo."
+  },
+  "errRuleGone": {
+    "message": "Esta regra de categoria não existe mais."
+  },
+  "errNoRule": {
+    "message": "Escolha uma regra de categoria que ainda exista."
+  },
+  "errAllow": {
+    "message": "Escolha se quer mostrar este canal."
+  },
+  "errKeywordInvalid": {
+    "message": "Digite uma palavra ou frase com letras ou números."
+  },
+  "errKeywordGone": {
+    "message": "Esta palavra-chave não existe mais."
+  },
+  "errNoKeyword": {
+    "message": "Escolha uma palavra-chave que ainda exista."
+  },
+  "errDuration": {
+    "message": "Escolha uma duração válida."
+  },
+  "errClock": {
+    "message": "O relógio do seu computador parece errado."
+  },
+  "errSnoozeTime": {
+    "message": "O horário de término é inválido."
+  },
+  "errNotSnoozed": {
+    "message": "Este canal não está mais oculto."
+  },
+  "errImportMode": {
+    "message": "Escolha se quer adicionar às suas regras ou substituí-las."
+  },
+  "errUndo": {
+    "message": "Esta alteração não pode ser desfeita."
+  },
+  "errUndoRestore": {
+    "message": "Isto não pode mais ser desfeito."
+  },
+  "errUndoNewer": {
+    "message": "Houve uma alteração mais recente ou o prazo acabou, então não dá para desfazer."
+  },
+  "errUnknown": {
+    "message": "Pedido desconhecido do Twitch Snooze."
+  },
+  "errNotFromExtension": {
+    "message": "Este pedido não veio do Twitch Snooze."
+  },
+  "errRegister": {
+    "message": "Só uma aba aberta da Twitch pode se registrar."
+  },
+  "errLearn": {
+    "message": "Só uma aba aberta da Twitch pode compartilhar detalhes da página."
+  },
+  "errReload": {
+    "message": "O Twitch Snooze foi atualizado. Recarregue esta aba da Twitch para continuar usando."
+  },
+  "errGeneric": {
+    "message": "Não foi possível atualizar o Twitch Snooze. Recarregue esta aba da Twitch e tente de novo."
+  },
+  "errEnterChannel": {
+    "message": "Digite o nome ou o link de um canal da Twitch."
+  },
+  "errEnterCategory": {
+    "message": "Digite o nome da categoria como aparece na Twitch."
+  },
+  "errBackupNotOurs": {
+    "message": "Este arquivo não é um backup do Twitch Snooze."
+  },
+  "errBackupNewer": {
+    "message": "Este backup é de uma versão mais nova do Twitch Snooze. Atualize a extensão primeiro."
+  },
+  "errBackupEmpty": {
+    "message": "Este backup não tem regras ativas para importar."
+  },
+  "errBackupJson": {
+    "message": "Não foi possível ler este arquivo como backup."
+  },
+  "errBackupLarge": {
+    "message": "Este arquivo é grande demais para ser um backup do Twitch Snooze."
+  }
+}

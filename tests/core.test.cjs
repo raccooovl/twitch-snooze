@@ -9,8 +9,14 @@ const path = require('node:path');
 const vm = require('node:vm');
 const { webcrypto } = require('node:crypto');
 const extensionPath = path.resolve(__dirname, '../extension');
+// Messages come from the English locale, as Chrome would provide them.
+const englishMessages = JSON.parse(fs.readFileSync(path.join(extensionPath, '_locales/en/messages.json'), 'utf8'));
+const i18nStub = { getMessage: key => (englishMessages[key] ? englishMessages[key].message.replace(/\$\$/g, '$') : '') };
+globalThis.chrome = { i18n: i18nStub };
+require(path.join(extensionPath, 'i18n.js'));
 const Core = require(path.join(extensionPath, 'core.js'));
 const coreSource = fs.readFileSync(path.join(extensionPath, 'core.js'), 'utf8');
+const i18nSource = fs.readFileSync(path.join(extensionPath, 'i18n.js'), 'utf8');
 const backgroundSource = fs.readFileSync(path.join(extensionPath, 'background.js'), 'utf8');
 const now = new Date(2026, 8, 30, 14, 0, 0).getTime();
 
@@ -64,6 +70,7 @@ function worker(options = {}) {
     static now() { return clock.now; }
   }
   const chrome = {
+    i18n: i18nStub,
     runtime,
     storage: { local: {
       async get(key) {
@@ -106,8 +113,9 @@ function worker(options = {}) {
     chrome, Date: FakeDate, URL, crypto: webcrypto, Intl, setTimeout, clearTimeout,
     console: { warn(...args) { warnings.push(args); } }
   });
-  context.importScripts = filename => {
-    assert.equal(filename, 'core.js');
+  context.importScripts = (...files) => {
+    assert.deepEqual(files, ['i18n.js', 'core.js']);
+    vm.runInContext(i18nSource, context, { filename: 'i18n.js' });
     vm.runInContext(coreSource, context, { filename: 'core.js' });
   };
   vm.runInContext(backgroundSource, context, { filename: 'background.js' });
@@ -124,8 +132,9 @@ function worker(options = {}) {
   };
 }
 
-test('presets match the approved six durations and omit one hour', () => {
-  assert.deepEqual(Core.PRESETS.map(preset => preset.key), ['today', 'day', 'three-days', 'week', 'fortnight', 'month']);
+test('presets keep the six timed durations, add Until I unhide, and omit one hour', () => {
+  assert.deepEqual(Core.PRESETS.map(preset => preset.key), ['today', 'day', 'three-days', 'week', 'fortnight', 'month', 'forever']);
+  assert.equal(Core.PRESETS.at(-1).label, 'Until I unhide');
   assert.equal(Core.PRESETS.find(preset => preset.key === 'day').label, '24 hours');
   assert.ok(Core.PRESETS.every(preset => !/1 hour/i.test(preset.label)));
 });
@@ -170,12 +179,12 @@ test('month clamps to calendar month end and preserves local time', () => {
 
 test('rejects invalid duration and invalid current time', () => {
   assert.throws(() => Core.snoozeUntil('hour', now), /duration/);
-  assert.throws(() => Core.snoozeUntil('day', NaN), /time/);
-  assert.throws(() => Core.snoozeUntil('day', 8.64e15), /time/);
+  assert.throws(() => Core.snoozeUntil('day', NaN), /clock/);
+  assert.throws(() => Core.snoozeUntil('day', 8.64e15), /end time/);
 });
 
 test('missing and malformed storage produces safe empty state', () => {
-  const empty = { schema: 1, revision: 0, snoozes: {}, undoMarkers: {}, rules: {}, whitelist: {} };
+  const empty = { schema: 1, revision: 0, snoozes: {}, undoMarkers: {}, rules: {}, filters: {}, whitelist: {}, profiles: {} };
   for (const raw of [undefined, null, [], 'bad', { schema: 2 }, { schema: 1, revision: 'oops', snoozes: [] }]) {
     assert.deepEqual(Core.normalizeState(raw, now), empty);
   }
@@ -209,21 +218,21 @@ test('special object property logins cannot pollute state prototypes', () => {
   assert.equal(state.snoozes.constructor.login, 'constructor');
 });
 
-test('formats expiry as readable local time and remaining duration', () => {
-  assert.equal(Core.formatRemaining(now + 2 * 86400000, now), '2 days left');
-  assert.equal(Core.formatRemaining(now + 3600000, now), '1 hour left');
-  assert.equal(Core.formatRemaining(now + 120000, now), '2 minutes left');
-  assert.equal(Core.formatRemaining(now + 1000, now), 'Less than a minute left');
-  assert.equal(Core.formatRemaining(now, now), 'Ready to restore');
-  assert.equal(Core.formatUntil(NaN), 'Unknown date');
-  assert.match(Core.formatUntil(now), /2026/);
+test('formats return dates for lists and menus', () => {
+  assert.equal(Core.formatUntil(NaN), '');
+  assert.equal(Core.formatUntil(now), 'Back Wed, Sep 30 at 2:00 PM');
+  assert.match(Core.formatUntilFull(now), /2026/);
+  assert.equal(Core.returnHint('today', now), 'back at midnight');
+  assert.equal(Core.returnHint('day', now), 'back Thu 2:00 PM');
+  assert.equal(Core.returnHint('three-days', now), 'back Sat, Oct 3');
+  assert.equal(Core.returnHint('forever', now), 'no end date');
 });
 
 test('worker initializes undefined storage, increments revision only when writing, and clears badge', async () => {
   const w = worker();
   const result = await w.message({ type: 'TSNOOZE_GET' });
   assert.equal(result.ok, true);
-  assert.deepEqual(result.state, { schema: 1, revision: 1, snoozes: {}, undoMarkers: {}, rules: {}, whitelist: {} });
+  assert.deepEqual(result.state, { schema: 1, revision: 1, snoozes: {}, undoMarkers: {}, rules: {}, filters: {}, whitelist: {}, profiles: {} });
   const sets = w.sets;
   assert.equal((await w.message({ type: 'TSNOOZE_GET' })).state.revision, 1);
   assert.equal(w.sets, sets);
@@ -624,7 +633,7 @@ test('atomic Show channel clears every overlapping channel rule and adds relevan
   const snoozed = await w.message({ type: 'TSNOOZE_SET', login: 'shroud', duration: 'day' });
   const result = await w.message({ type: 'TSNOOZE_SHOW_CHANNEL', login: 'shroud', displayName: 'Shroud', categories: ['Just Chatting', 'VALORANT'] });
   assert.equal(result.ok, true);
-  assert.equal(Object.hasOwn(result, 'undo'), false);
+  assert.equal(result.undo.kind, 'entities');
   assert.deepEqual(result.state.snoozes, {});
   assert.deepEqual(result.state.undoMarkers, {});
   assert.equal(Object.values(result.state.rules).filter(item => item.login === 'shroud').length, 0);
@@ -664,8 +673,10 @@ test('overview registers only Twitch tabs and stores no observed browsing conten
   ]) assert.equal((await w.message({ type: 'TSNOOZE_REGISTER' }, bad)).ok, false);
   w.snapshots.set(7, { items: [{ login: 'shroud', displayName: 'Shroud', category: 'Just Chatting', title: 'Never retain this title' }] });
   const snapshot = await w.message({ type: 'TSNOOZE_OVERVIEW' });
-  assert.deepEqual(snapshot.observations, [{ login: 'shroud', displayName: 'Shroud', category: { key: 'just-chatting', name: 'Just Chatting' } }]);
+  // Titles reach the open manager only in memory so keyword matches can be listed; they are never saved.
+  assert.deepEqual(snapshot.observations, [{ login: 'shroud', displayName: 'Shroud', category: { key: 'just-chatting', name: 'Just Chatting' }, title: 'Never retain this title' }]);
   assert.deepEqual(Object.keys(w.storage), [Core.STORAGE_KEY]);
+  assert.equal(JSON.stringify([w.storage, w.sessionStorage]).includes('Never retain'), false);
   assert.deepEqual(w.storage[Core.STORAGE_KEY].snoozes, {});
   assert.deepEqual(w.storage[Core.STORAGE_KEY].rules, {});
   assert.deepEqual(w.sessionStorage, { twitchSnoozeTabs: [7] });
@@ -889,7 +900,7 @@ test('Always show validates logins and rejects new direct hiding rules with a he
   ]) {
     const rejected = await w.message(request);
     assert.equal(rejected.ok, false);
-    assert.equal(rejected.error, 'Remove this streamer from the whitelist before hiding them.');
+    assert.equal(rejected.error, 'Stop always showing this streamer before hiding them.');
   }
   assert.equal(w.sets, sets, 'invalid and blocked requests must not save changes');
   const global = await w.message({ type: 'TSNOOZE_RULE_SET', category: 'Just Chatting' });
@@ -992,4 +1003,361 @@ test('key-order-independent reads still persist expiry pruning without redundant
   assert.equal(w.alarms.size, 0);
   assert.deepEqual((await w.message({ type: 'TSNOOZE_GET' })).state, expired.state);
   assert.equal(w.sets, sets + 1);
+});
+
+// ---- 0.5.0 ----
+
+test('Until I unhide never expires, survives normalization, alarms and restarts, and formats clearly', async () => {
+  assert.equal(Core.snoozeUntil('forever', now), null);
+  const forever = entry('shroud', { duration: 'forever', until: null });
+  const state = Core.normalizeState({ schema: 1, snoozes: { shroud: forever, bad: entry('bad', { until: null }) } }, now + 400 * 86400000);
+  assert.deepEqual(Object.keys(state.snoozes), ['shroud']);
+  assert.equal(Core.hiddenReasons(state, { login: 'shroud' }, now + 900 * 86400000).length, 1);
+  assert.equal(Core.formatUntil(null), 'Hidden until you unhide');
+  assert.equal(Core.snoozedMessage('Shroud', 'forever'), 'Shroud hidden until you unhide them.');
+  assert.equal(Core.snoozedMessage('Shroud', 'week'), 'Shroud snoozed for 1 week.');
+  const w = worker();
+  const set = await w.message({ type: 'TSNOOZE_SET', login: 'shroud', displayName: 'Shroud', duration: 'forever' });
+  assert.equal(set.state.snoozes.shroud.until, null);
+  assert.equal(w.alarms.size, 0);
+  assert.equal(w.badges.at(-1), '1');
+  w.clock.now = now + 5 * 365 * 86400000;
+  const later = worker({ storage: w.storage, clock: w.clock });
+  assert.equal((await later.message({ type: 'TSNOOZE_GET' })).state.snoozes.shroud.until, null);
+  const restored = await later.message({ type: 'TSNOOZE_RESTORE', login: 'shroud' });
+  assert.equal(restored.state.undoMarkers.shroud.until, w.clock.now + Core.RESTORE_UNDO_MS);
+  const undone = await later.message({ type: 'TSNOOZE_UNDO', undo: restored.undo });
+  assert.equal(undone.state.snoozes.shroud.duration, 'forever');
+  const replaced = await later.message({ type: 'TSNOOZE_SET', login: 'shroud', duration: 'day' });
+  const back = await later.message({ type: 'TSNOOZE_UNDO', undo: replaced.undo });
+  assert.equal(back.state.snoozes.shroud.until, null);
+});
+
+test('category slugs match across display languages and learned names keep sidebar rules working', () => {
+  assert.equal(Core.categorySlugFromHref('/directory/category/just-chatting'), 'just-chatting');
+  assert.equal(Core.categorySlugFromHref('https://www.twitch.tv/directory/category/minecraft?sort=x'), 'minecraft');
+  assert.equal(Core.categorySlugFromHref('/directory/game/Just%20Chatting'), 'just-chatting');
+  for (const bad of ['/directory', 'https://evil.test/directory/category/x', '/directory/category/%E0%A4%A', null]) assert.equal(Core.categorySlugFromHref(bad), null);
+  assert.deepEqual(Core.normalizeCategory({ name: 'Just Chatting', slug: 'just-chatting' }), { key: 'just-chatting', name: 'Just Chatting', slug: 'just-chatting' });
+  assert.deepEqual(Core.normalizeCategory({ name: 'Just Chatting', slug: '../../x' }), { key: 'just-chatting', name: 'Just Chatting' });
+  const english = rule({ name: 'Just Chatting', slug: 'just-chatting' });
+  const state = Core.normalizeState({ schema: 1, rules: { [english.id]: english } }, now);
+  const dutchCard = { login: 'lirik', category: { name: 'Gewoon kletsen', slug: 'just-chatting' } };
+  const dutchSidebar = { login: 'lirik', category: 'Gewoon kletsen' };
+  assert.equal(Core.hiddenReasons(state, dutchCard, now).length, 1);
+  assert.equal(Core.hiddenReasons(state, dutchSidebar, now).length, 0);
+  assert.equal(Core.hiddenReasons(state, { login: 'lirik', category: { name: 'Just Chatting', slug: 'other' } }, now).length, 0);
+  state.rules[english.id].aliases = ['gewoon-kletsen'];
+  assert.equal(Core.hiddenReasons(state, dutchSidebar, now).length, 1);
+  const legacy = rule('Minecraft');
+  const legacyState = Core.normalizeState({ schema: 1, rules: { [legacy.id]: legacy } }, now);
+  assert.deepEqual(legacyState.rules[legacy.id], legacy);
+  assert.equal(Core.hiddenReasons(legacyState, { login: 'x1', category: { name: 'Minecraft', slug: 'minecraft' } }, now).length, 1);
+});
+
+test('the worker learns slugs and translated names from Twitch tabs without duplicating rules or breaking Undo', async () => {
+  const w = worker();
+  const sender = { id: w.runtime.id, tab: { id: 3 }, url: 'https://www.twitch.tv/directory/all' };
+  const typed = await w.message({ type: 'TSNOOZE_RULE_SET', category: 'Just Chatting' });
+  const id = 'category:just-chatting';
+  assert.equal((await w.message({ type: 'TSNOOZE_LEARN', categories: [{ name: 'Just Chatting', slug: 'just-chatting' }] })).ok, false);
+  const learned = await w.message({ type: 'TSNOOZE_LEARN', categories: [{ name: 'Just Chatting', slug: 'just-chatting' }] }, sender);
+  assert.equal(learned.state.rules[id].category.slug, 'just-chatting');
+  assert.equal(learned.state.rules[id].token, typed.state.rules[id].token);
+  const dutch = await w.message({ type: 'TSNOOZE_LEARN', categories: [{ name: 'Gewoon kletsen', slug: 'just-chatting' }] }, sender);
+  assert.deepEqual(dutch.state.rules[id].aliases, ['gewoon-kletsen']);
+  const sets = w.sets;
+  await w.message({ type: 'TSNOOZE_LEARN', categories: [{ name: 'Gewoon kletsen', slug: 'just-chatting' }] }, sender);
+  assert.equal(w.sets, sets);
+  const again = await w.message({ type: 'TSNOOZE_RULE_SET', category: { name: 'Gewoon kletsen', slug: 'just-chatting' } });
+  assert.deepEqual(Object.keys(again.state.rules), [id]);
+  assert.equal((await w.message({ type: 'TSNOOZE_UNDO', undo: typed.undo })).ok, false);
+  const undone = await w.message({ type: 'TSNOOZE_UNDO', undo: again.undo });
+  assert.equal(undone.ok, true);
+  assert.deepEqual(undone.state.rules[id].aliases, ['gewoon-kletsen']);
+});
+
+test('display names typed in lowercase are replaced once Twitch shows the real name', async () => {
+  const w = worker();
+  const sender = { id: w.runtime.id, tab: { id: 3 }, url: 'https://www.twitch.tv/' };
+  await w.message({ type: 'TSNOOZE_SET', login: 'northernlion', displayName: 'northernlion', duration: 'week' });
+  const set = await w.message({ type: 'TSNOOZE_SET', login: 'lirik', displayName: 'LIRIK', duration: 'week' });
+  await w.message({ type: 'TSNOOZE_WHITELIST_SET', login: 'shroud' });
+  await w.message({ type: 'TSNOOZE_RULE_SET', category: 'Minecraft' });
+  await w.message({ type: 'TSNOOZE_RULE_EXCEPTION', id: 'category:minecraft', login: 'zackrawrr', allow: true });
+  const result = await w.message({ type: 'TSNOOZE_LEARN', names: [
+    { login: 'northernlion', displayName: 'Northernlion' }, { login: 'lirik', displayName: 'Lirik' },
+    { login: 'shroud', displayName: 'Shroud' }, { login: 'zackrawrr', displayName: 'zackrawrr' }, { login: '/directory', displayName: 'X' }
+  ] }, sender);
+  assert.equal(result.state.snoozes.northernlion.displayName, 'Northernlion');
+  assert.equal(result.state.snoozes.lirik.displayName, 'LIRIK');
+  assert.equal(result.state.whitelist.shroud.displayName, 'Shroud');
+  assert.equal(result.state.rules['category:minecraft'].exceptions[0].displayName, 'zackrawrr');
+  assert.equal((await w.message({ type: 'TSNOOZE_UNDO', undo: set.undo })).ok, true);
+});
+
+test('keyword filters match whole words in titles and tags, including joined tags and spaceless scripts', () => {
+  assert.deepEqual(Core.normalizeKeyword('  24/7 \n'), { key: '24 7', text: '24/7' });
+  for (const bad of ['', '   ', '!!!', '🔴', 'x'.repeat(81), null, 3]) assert.equal(Core.normalizeKeyword(bad), null);
+  const match = (keyword, info) => Core.keywordMatches(Core.normalizeKeyword(keyword).key, info);
+  assert.equal(match('horror', { title: '[645/730] 🔴MINECRAFT HORROR MOD 🔴' }), true);
+  assert.equal(match('hor', { title: 'MINECRAFT HORROR MOD' }), false);
+  assert.equal(match('24/7', { title: '24/7 lofi radio' }), true);
+  assert.equal(match('drops', { tags: ['DropsEnabled', 'English'] }), true);
+  assert.equal(match('dropsenabled', { tags: ['DropsEnabled'] }), true);
+  assert.equal(match('english', { title: 'chill', tags: ['English'] }), true);
+  assert.equal(match('rerun', { title: 'no reruns today' }), false);
+  assert.equal(match('原神', { title: '【原神】ナタ探索' }), true);
+  const filter = { id: 'keyword:horror', key: 'horror', text: 'Horror', exceptions: [{ login: 'lirik', displayName: 'Lirik' }], createdAt: now, token: 'valid-filter-token-1' };
+  const state = Core.normalizeState({ schema: 1, filters: { 'keyword:horror': filter, 'keyword:wrong': { ...filter, id: 'keyword:wrong' } }, whitelist: { shroud: { login: 'shroud', displayName: 'Shroud', createdAt: now } } }, now);
+  assert.deepEqual(Object.keys(state.filters), ['keyword:horror']);
+  assert.deepEqual(Core.hiddenReasons(state, { login: 'x1', title: 'Horror night' }, now).map(reason => reason.type), ['keyword']);
+  assert.equal(Core.hiddenReasons(state, { login: 'lirik', title: 'Horror night' }, now).length, 0);
+  assert.equal(Core.hiddenReasons(state, { login: 'shroud', title: 'Horror night' }, now).length, 0);
+  assert.equal(Core.hiddenReasons(state, { login: 'x1', title: 'Cozy night' }, now).length, 0);
+});
+
+test('profile pictures accept only Twitch profile images and are sized for the lists', () => {
+  const base = 'https://static-cdn.jtvnw.net/jtv_user_pictures/0d5d2fd2-7a3f-4b4e-8e7c-0e0e10a1b2c3-profile_image-';
+  assert.equal(Core.normalizeAvatar(base + '50x50.png'), base + '70x70.png');
+  assert.equal(Core.normalizeAvatar(base + '300x300.jpeg'), base + '70x70.jpeg');
+  assert.equal(Core.normalizeAvatar('https://static-cdn.jtvnw.net/user-default-pictures-uv/ce57700a-def9-11e9-842d-784f43822e80-profile_image-70x70.png'),
+    'https://static-cdn.jtvnw.net/user-default-pictures-uv/ce57700a-def9-11e9-842d-784f43822e80-profile_image-70x70.png');
+  for (const bad of [null, '', 'data:,', 'http://static-cdn.jtvnw.net/jtv_user_pictures/a-profile_image-70x70.png',
+    'https://static-cdn.jtvnw.net/previews-ttv/live_user_shroud-440x248.jpg', 'https://static-cdn.jtvnw.net/jtv_user_pictures/a.png?x=1',
+    'https://static-cdn.jtvnw.net/jtv_user_pictures/a.png#x', 'https://evil.test/jtv_user_pictures/a.png', 'https://static-cdn.jtvnw.net.evil.test/jtv_user_pictures/a.png',
+    'https://user@static-cdn.jtvnw.net/jtv_user_pictures/a.png', 'https://static-cdn.jtvnw.net/jtv_user_pictures/a.svg', 'javascript:alert(1)',
+    'https://static-cdn.jtvnw.net/jtv_user_pictures/' + 'a'.repeat(300) + '.png', 'https://static-cdn.jtvnw.net/jtv_user_pictures/a b.png']) {
+    assert.equal(Core.normalizeAvatar(bad), null, String(bad));
+  }
+});
+
+test('stored profile pictures are kept for streamers in your rules and forgotten 30 days after they leave', () => {
+  const avatar = 'https://static-cdn.jtvnw.net/jtv_user_pictures/abc-profile_image-70x70.png';
+  const day = 86400000;
+  const state = Core.normalizeState({ schema: 1,
+    whitelist: { ohnepixel: { login: 'ohnepixel', displayName: 'ohnePixel', createdAt: now } },
+    profiles: {
+      ohnepixel: { avatar, seenAt: now - 90 * day },
+      recent: { avatar, seenAt: now - 5 * day },
+      stale: { avatar, seenAt: now - 31 * day },
+      bad: { avatar: 'https://evil.test/a.png', seenAt: now },
+      future: { avatar, seenAt: now + 2 * day },
+      '/directory': { avatar, seenAt: now },
+      extra: { avatar, seenAt: now, junk: true }
+    } }, now);
+  assert.deepEqual(Object.keys(state.profiles).sort(), ['extra', 'ohnepixel', 'recent']);
+  assert.deepEqual(state.profiles.extra, { avatar, seenAt: now });
+  assert.equal(Core.avatarFor(state, 'ohnepixel'), avatar);
+  assert.equal(Core.avatarFor(state, 'constructor'), null);
+  const many = {};
+  for (let index = 0; index < 320; index++) many['user' + index] = { avatar, seenAt: now - index * 1000 };
+  const capped = Core.normalizeState({ schema: 1, profiles: many }, now);
+  assert.equal(Object.keys(capped.profiles).length, 300);
+  assert.ok(capped.profiles.user0 && !capped.profiles.user319);
+  // Backups hold your choices only.
+  assert.equal('profiles' in Core.exportBackup(state, now), false);
+});
+
+test('the worker learns profile pictures only for streamers in your rules and only when they change', async () => {
+  const w = worker();
+  const sender = { id: w.runtime.id, tab: { id: 3 }, url: 'https://www.twitch.tv/' };
+  const avatar = 'https://static-cdn.jtvnw.net/jtv_user_pictures/abc-profile_image-50x50.png';
+  await w.message({ type: 'TSNOOZE_WHITELIST_SET', login: 'ohnepixel', displayName: 'ohnePixel' });
+  const set = await w.message({ type: 'TSNOOZE_SET', login: 'qucee', displayName: 'Qucee', duration: 'week' });
+  await w.message({ type: 'TSNOOZE_RULE_SET', category: 'Minecraft' });
+  await w.message({ type: 'TSNOOZE_RULE_EXCEPTION', id: 'category:minecraft', login: 'zackrawrr', allow: true });
+  const learned = await w.message({ type: 'TSNOOZE_LEARN', names: [
+    { login: 'ohnepixel', displayName: 'ohnePixel', avatar }, { login: 'qucee', displayName: 'qucee', avatar },
+    { login: 'zackrawrr', displayName: 'zackrawrr', avatar }, { login: 'stranger', displayName: 'Stranger', avatar },
+    { login: 'shroud', displayName: 'shroud', avatar: 'https://static-cdn.jtvnw.net/previews-ttv/live_user_shroud-440x248.jpg' }
+  ] }, sender);
+  assert.equal(learned.ok, true);
+  assert.deepEqual(Object.keys(learned.state.profiles).sort(), ['ohnepixel', 'qucee', 'zackrawrr']);
+  assert.equal(learned.state.profiles.qucee.avatar, avatar.replace('50x50', '70x70'));
+  const writes = w.sets;
+  const again = await w.message({ type: 'TSNOOZE_LEARN', names: [{ login: 'qucee', displayName: 'qucee', avatar }] }, sender);
+  assert.equal(w.sets, writes);
+  assert.equal(again.state.revision, learned.state.revision);
+  // Pictures don't count as changes for Undo.
+  assert.equal((await w.message({ type: 'TSNOOZE_UNDO', undo: set.undo })).ok, true);
+  assert.ok(w.storage.twitchSnoozeState.profiles.qucee);
+  // Overview passes along valid pictures only.
+  const seen = worker({ sessionStorage: { twitchSnoozeTabs: [9] }, snapshots: new Map([[9, { items: [
+    { login: 'qucee', displayName: 'Qucee', avatar }, { login: 'aspen', displayName: 'Aspen', avatar: 'https://evil.test/a.png' }
+  ] }]]) });
+  const overview = await seen.message({ type: 'TSNOOZE_OVERVIEW' });
+  assert.equal(overview.observations.find(info => info.login === 'qucee').avatar, avatar.replace('50x50', '70x70'));
+  assert.equal('avatar' in overview.observations.find(info => info.login === 'aspen'), false);
+});
+
+test('keyword filters save once, count in the badge, accept exceptions, and are restored by Show channel with Undo', async () => {
+  const w = worker();
+  const added = await w.message({ type: 'TSNOOZE_FILTER_SET', text: 'Horror' });
+  assert.equal(added.state.filters['keyword:horror'].text, 'Horror');
+  assert.equal(w.badges.at(-1), '1');
+  const sets = w.sets;
+  assert.equal((await w.message({ type: 'TSNOOZE_FILTER_SET', text: 'HORROR!' })).ok, true);
+  assert.equal(w.sets, sets);
+  assert.equal((await w.message({ type: 'TSNOOZE_FILTER_SET', text: '!!!' })).ok, false);
+  const shown = await w.message({ type: 'TSNOOZE_SHOW_CHANNEL', login: 'lirik', displayName: 'Lirik', categories: [], filters: ['keyword:horror', 'keyword:missing'] });
+  assert.deepEqual(shown.state.filters['keyword:horror'].exceptions, [{ login: 'lirik', displayName: 'Lirik' }]);
+  const undone = await w.message({ type: 'TSNOOZE_UNDO', undo: shown.undo });
+  assert.deepEqual(undone.state.filters['keyword:horror'].exceptions, []);
+  const removed = await w.message({ type: 'TSNOOZE_FILTER_REMOVE', id: 'keyword:horror' });
+  assert.deepEqual(removed.state.filters, {});
+  assert.equal(w.badges.at(-1), '');
+  assert.equal((await w.message({ type: 'TSNOOZE_UNDO', undo: removed.undo })).state.filters['keyword:horror'].text, 'Horror');
+  // The keyword is now exactly as first added, so that original Undo still applies; a later edit would block it.
+  await w.message({ type: 'TSNOOZE_FILTER_EXCEPTION', id: 'keyword:horror', login: 'lirik', allow: true });
+  assert.equal((await w.message({ type: 'TSNOOZE_UNDO', undo: added.undo })).ok, false);
+  assert.equal((await w.message({ type: 'TSNOOZE_FILTER_EXCEPTION', id: 'keyword:horror', login: 'lirik', allow: 'yes' })).ok, false);
+});
+
+test('every rule and whitelist change has an Undo that refuses to overwrite newer changes', async () => {
+  const w = worker();
+  const hidden = await w.message({ type: 'TSNOOZE_RULE_SET', category: 'Just Chatting' });
+  assert.deepEqual((await w.message({ type: 'TSNOOZE_UNDO', undo: hidden.undo })).state.rules, {});
+  const again = await w.message({ type: 'TSNOOZE_RULE_SET', category: 'Just Chatting' });
+  const exception = await w.message({ type: 'TSNOOZE_RULE_EXCEPTION', id: 'category:just-chatting', login: 'shroud', allow: true });
+  assert.equal((await w.message({ type: 'TSNOOZE_UNDO', undo: again.undo })).ok, false);
+  assert.deepEqual((await w.message({ type: 'TSNOOZE_UNDO', undo: exception.undo })).state.rules['category:just-chatting'].exceptions, []);
+  const removed = await w.message({ type: 'TSNOOZE_RULE_REMOVE', id: 'category:just-chatting' });
+  await w.message({ type: 'TSNOOZE_SET', login: 'lirik', duration: 'day' });
+  assert.ok((await w.message({ type: 'TSNOOZE_UNDO', undo: removed.undo })).state.rules['category:just-chatting']);
+  const listed = await w.message({ type: 'TSNOOZE_WHITELIST_SET', login: 'shroud', displayName: 'Shroud' });
+  assert.equal(Object.hasOwn((await w.message({ type: 'TSNOOZE_UNDO', undo: listed.undo })).state.whitelist, 'shroud'), false);
+  await w.message({ type: 'TSNOOZE_WHITELIST_SET', login: 'shroud' });
+  w.clock.now += 5;
+  const unlisted = await w.message({ type: 'TSNOOZE_WHITELIST_REMOVE', login: 'shroud' });
+  assert.ok((await w.message({ type: 'TSNOOZE_UNDO', undo: unlisted.undo })).state.whitelist.shroud);
+  const sets = w.sets;
+  for (const undo of [
+    { kind: 'entities', changes: [] },
+    { kind: 'entities', changes: [{ area: 'undoMarkers', key: 'shroud', before: null, after: null }] },
+    { kind: 'entities', changes: [{ area: 'snoozes', key: '/directory', before: null, after: null }] },
+    { kind: 'entities', changes: [{ area: 'rules', key: 'category:x', before: { id: 'nope' }, after: null }] },
+    { kind: 'entities', changes: [{ area: 'whitelist', key: 'shroud', before: null, after: 'bad value!' }] }
+  ]) assert.equal((await w.message({ type: 'TSNOOZE_UNDO', undo })).ok, false);
+  assert.equal(w.sets, sets);
+});
+
+test('a composite Restore Undo puts back the snooze, streamer rules and category exceptions together', async () => {
+  const w = worker();
+  await w.message({ type: 'TSNOOZE_RULE_SET', category: 'Just Chatting' });
+  await w.message({ type: 'TSNOOZE_RULE_SET', category: 'Minecraft', login: 'shroud' });
+  await w.message({ type: 'TSNOOZE_SET', login: 'shroud', duration: 'forever' });
+  const before = (await w.message({ type: 'TSNOOZE_GET' })).state;
+  const shown = await w.message({ type: 'TSNOOZE_SHOW_CHANNEL', login: 'shroud', categories: ['Just Chatting'] });
+  assert.equal(Core.hiddenReasons(shown.state, { login: 'shroud', category: 'Just Chatting' }).length, 0);
+  const undone = await w.message({ type: 'TSNOOZE_UNDO', undo: shown.undo });
+  assert.deepEqual(undone.state.snoozes, before.snoozes);
+  assert.deepEqual(undone.state.rules, before.rules);
+  assert.equal((await w.message({ type: 'TSNOOZE_UNDO', undo: shown.undo })).ok, false);
+});
+
+test('backups export only saved choices and import by merging or replacing with fresh identities', async () => {
+  const w = worker();
+  await w.message({ type: 'TSNOOZE_SET', login: 'shroud', displayName: 'Shroud', duration: 'forever' });
+  await w.message({ type: 'TSNOOZE_SET', login: 'lirik', duration: 'day' });
+  await w.message({ type: 'TSNOOZE_RULE_SET', category: { name: 'Just Chatting', slug: 'just-chatting' } });
+  await w.message({ type: 'TSNOOZE_FILTER_SET', text: '24/7' });
+  await w.message({ type: 'TSNOOZE_WHITELIST_SET', login: 'zackrawrr', displayName: 'zackrawrr' });
+  const restored = await w.message({ type: 'TSNOOZE_RESTORE', login: 'lirik' });
+  const backup = JSON.parse(JSON.stringify(Core.exportBackup(restored.state, w.clock.now)));
+  assert.equal(backup.app, 'twitch-snooze');
+  assert.deepEqual(Object.keys(backup).sort(), ['app', 'exportedAt', 'filters', 'format', 'rules', 'snoozes', 'whitelist']);
+  assert.deepEqual(Core.readBackup(backup, w.clock.now).counts, { snoozes: 1, categories: 1, streamerRules: 0, keywords: 1, whitelist: 1, total: 4 });
+  for (const bad of [null, [], { app: 'other' }, { app: 'twitch-snooze', format: 2 }, { app: 'twitch-snooze', format: 1 }]) assert.throws(() => Core.readBackup(bad, w.clock.now));
+  const other = worker();
+  await other.message({ type: 'TSNOOZE_SET', login: 'shroud', duration: 'week' });
+  await other.message({ type: 'TSNOOZE_RULE_SET', category: 'Just Chatting' });
+  await other.message({ type: 'TSNOOZE_RULE_EXCEPTION', id: 'category:just-chatting', login: 'hasanabi', allow: true });
+  await other.message({ type: 'TSNOOZE_SET', login: 'northernlion', duration: 'day' });
+  const merged = await other.message({ type: 'TSNOOZE_IMPORT', mode: 'merge', data: backup });
+  assert.equal(merged.ok, true);
+  assert.equal(merged.state.snoozes.shroud.until, null);
+  assert.notEqual(merged.state.snoozes.shroud.token, backup.snoozes.shroud.token);
+  assert.ok(merged.state.snoozes.northernlion);
+  assert.equal(merged.state.rules['category:just-chatting'].category.slug, 'just-chatting');
+  assert.deepEqual(merged.state.rules['category:just-chatting'].exceptions.map(item => item.login), ['hasanabi']);
+  assert.ok(merged.state.filters['keyword:24 7']);
+  assert.ok(merged.state.whitelist.zackrawrr);
+  const replaced = await other.message({ type: 'TSNOOZE_IMPORT', mode: 'replace', data: backup });
+  assert.deepEqual(Object.keys(replaced.state.snoozes), ['shroud']);
+  assert.deepEqual(replaced.state.rules['category:just-chatting'].exceptions, []);
+  assert.deepEqual(replaced.state.undoMarkers, {});
+  const sets = other.sets;
+  assert.equal((await other.message({ type: 'TSNOOZE_IMPORT', mode: 'wipe', data: backup })).ok, false);
+  assert.equal((await other.message({ type: 'TSNOOZE_IMPORT', mode: 'merge', data: { app: 'nope' } })).ok, false);
+  assert.equal(other.sets, sets);
+});
+
+test('current channel paths cover channel sub-pages but not Twitch routes', () => {
+  for (const [path, login] of [['/hasanabi', 'hasanabi'], ['/HasanAbi/', 'hasanabi'], ['/hasanabi/videos', 'hasanabi'], ['/hasanabi/about', 'hasanabi'],
+    ['/directory', null], ['/videos/123', null], ['/hasanabi/clip/abc', null], ['/', null], ['/settings/profile', null]]) {
+    assert.equal(Core.channelFromPath(path), login, path);
+  }
+});
+
+test('the generated page stylesheet matches ui.css and no extension file is exposed to Twitch pages', () => {
+  const css = fs.readFileSync(path.join(extensionPath, 'ui.css'), 'utf8');
+  const context = vm.createContext({});
+  vm.runInContext(fs.readFileSync(path.join(extensionPath, 'ui-css.js'), 'utf8'), context);
+  assert.equal(context.TwitchSnoozeCSS, css);
+  const manifest = JSON.parse(fs.readFileSync(path.join(extensionPath, 'manifest.json'), 'utf8'));
+  assert.equal(Object.hasOwn(manifest, 'web_accessible_resources'), false);
+  assert.deepEqual(manifest.permissions, ['storage', 'alarms']);
+  assert.deepEqual(manifest.content_scripts[0].js, ['i18n.js', 'core.js', 'ui-css.js', 'ui.js', 'content.js']);
+});
+
+// ---- 0.6.0 ----
+
+test('every message used in the code exists in every language with the same placeholders', () => {
+  const { languages, messages } = require('../tools/messages.cjs');
+  assert.deepEqual(languages, ['en', 'nl', 'de', 'es', 'pt_BR']);
+  const used = new Set(['extName', 'extDescription', 'extShortName', 'localeCode', 'tabCategories', 'tabKeywords']);
+  for (const file of fs.readdirSync(extensionPath).filter(name => /\.(js|html)$/.test(name))) {
+    const source = fs.readFileSync(path.join(extensionPath, file), 'utf8');
+    for (const match of source.matchAll(/\bt\(\s*["']([A-Za-z0-9_]+)["']/g)) used.add(match[1]);
+    for (const match of source.matchAll(/data-i18n(?:-[a-z-]+)?="([A-Za-z0-9_]+)"/g)) used.add(match[1]);
+    for (const match of source.matchAll(/\btp\(\s*["']([A-Za-z0-9_]+)["']/g)) { used.add(match[1] + '_one'); used.add(match[1] + '_other'); }
+    for (const match of source.matchAll(/\['(preset\w+)', '(snoozed\w+)'\]/g)) { used.add(match[1]); used.add(match[2]); }
+  }
+  const missing = [...used].filter(key => !Object.hasOwn(messages, key));
+  assert.deepEqual(missing, []);
+  for (const language of languages) {
+    const file = JSON.parse(fs.readFileSync(path.join(extensionPath, '_locales', language, 'messages.json'), 'utf8'));
+    assert.deepEqual(Object.keys(file).sort(), Object.keys(messages).sort(), language);
+  }
+  const manifest = JSON.parse(fs.readFileSync(path.join(extensionPath, 'manifest.json'), 'utf8'));
+  assert.equal(manifest.default_locale, 'en');
+  assert.equal(manifest.name, '__MSG_extName__');
+  assert.ok([...manifest.short_name].length <= 12);
+});
+
+test('Dutch messages, dates and plurals come out in Dutch', () => {
+  const dutch = JSON.parse(fs.readFileSync(path.join(extensionPath, '_locales/nl/messages.json'), 'utf8'));
+  const context = vm.createContext({ chrome: { i18n: { getMessage: key => (dutch[key] ? dutch[key].message : ''), getUILanguage: () => 'nl' } }, Intl, Date, URL, Object, String, Number, Array, Set, Map, Math, JSON, RegExp, Error, RangeError });
+  context.globalThis = context;
+  vm.runInContext(fs.readFileSync(path.join(extensionPath, 'i18n.js'), 'utf8'), context);
+  vm.runInContext(coreSource, context);
+  const DutchCore = context.TwitchSnooze;
+  assert.equal(DutchCore.PRESETS.find(preset => preset.key === 'week').label, '1 week');
+  assert.equal(DutchCore.PRESETS.at(-1).label, 'Tot ik ze weer toon');
+  assert.equal(DutchCore.snoozedMessage('lowtide', 'fortnight'), 'lowtide 2 weken verborgen.');
+  assert.equal(DutchCore.formatUntil(now), 'Terug op wo 30 sep om 14:00');
+  assert.equal(DutchCore.returnHint('day', now), 'terug do 14:00');
+  assert.equal(DutchCore.describeCounts({ snoozes: 1, streamerRules: 0, categories: 2, keywords: 0, whitelist: 1 }), '1 verborgen streamer, 2 verborgen categorieën en 1 altijd getoonde streamer');
+  assert.throws(() => DutchCore.readBackup({ app: 'nope' }), /geen back-up van Twitch Snooze/);
+});
+
+test('dates follow the browser region when it matches the language (en-GB gets 24-hour times)', () => {
+  const context = vm.createContext({ chrome: { i18n: { getMessage: i18nStub.getMessage, getUILanguage: () => 'en-GB' } }, Intl, Date, URL, Object, String, Number, Array, Set, Map, Math, JSON, RegExp, Error, RangeError });
+  context.globalThis = context;
+  vm.runInContext(fs.readFileSync(path.join(extensionPath, 'i18n.js'), 'utf8'), context);
+  vm.runInContext(coreSource, context);
+  assert.equal(context.TwitchSnoozeI18n.locale, 'en-GB');
+  assert.equal(context.TwitchSnooze.returnHint('day', now), 'back Thu 14:00');
+  assert.equal(context.TwitchSnooze.formatUntil(now), 'Back Wed 30 Sept at 14:00');
 });

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title data-i18n="backupPageTitle">Twitch Snooze backup</title>
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="ui.css">
+</head>
+<body class="sz-theme sz-options">
+  <main class="sz-options-main">
+    <header class="sz-options-header">
+      <span class="sz-brand-tile" id="brand" aria-hidden="true"></span>
+      <div><h1 data-i18n="backupTitle"></h1><p class="sz-options-sub" data-i18n="extShortName"></p></div>
+      <span class="sz-version" id="version"></span>
+    </header>
+    <p class="sz-options-intro" data-i18n="backupIntro"></p>
+    <div id="feedback" aria-live="polite"></div>
+
+    <section class="sz-options-card" aria-labelledby="export-title">
+      <h2 id="export-title" data-i18n="backupSaveTitle"></h2>
+      <p class="sz-caption" id="export-summary"></p>
+      <button type="button" class="sz-primary" id="export-button" disabled data-i18n="backupDownload"></button>
+    </section>
+
+    <section class="sz-options-card" aria-labelledby="import-title">
+      <h2 id="import-title" data-i18n="backupRestoreTitle"></h2>
+      <p class="sz-caption" data-i18n="backupRestoreIntro"></p>
+      <label class="sz-file">
+        <input type="file" id="import-file" accept="application/json,.json">
+        <span class="sz-secondary" aria-hidden="true" data-i18n="backupChoose"></span>
+        <span class="sz-file-name" id="import-file-name" data-i18n="backupNoFile"></span>
+      </label>
+      <div id="import-preview" hidden>
+        <p class="sz-import-summary" id="import-summary"></p>
+        <div class="sz-options-actions">
+          <button type="button" class="sz-primary" id="import-merge" data-i18n="backupMerge"></button>
+          <button type="button" class="sz-secondary" id="import-replace" data-i18n="backupReplace"></button>
+        </div>
+        <div id="replace-confirm" class="sz-confirm" hidden>
+          <p data-i18n="backupReplaceWarn"></p>
+          <div class="sz-options-actions">
+            <button type="button" class="sz-danger" id="import-replace-confirm" data-i18n="backupReplaceConfirm"></button>
+            <button type="button" class="sz-secondary" id="import-replace-cancel" data-i18n="cancel"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <p class="sz-options-foot" data-i18n="backupFoot"></p>
+  </main>
+  <script src="i18n.js"></script>
+  <script src="core.js"></script>
+  <script src="ui.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

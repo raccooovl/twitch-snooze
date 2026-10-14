@@ -1,26 +1,51 @@
 {
   "manifest_version": 3,
-  "name": "Twitch Snooze: Hide Channels & Categories",
+  "name": "__MSG_extName__",
   "short_name": "TwitchSnooze",
-  "version": "0.4.2",
-  "description": "Hide Twitch channels and categories without unfollowing. Snooze streamers, whitelist favourites, and manage hidden content.",
+  "version": "0.6.1",
+  "description": "__MSG_extDescription__",
+  "default_locale": "en",
   "minimum_chrome_version": "120",
-  "permissions": ["storage", "alarms"],
-  "background": { "service_worker": "background.js" },
-  "action": {
-    "default_title": "Twitch Snooze",
-    "default_popup": "popup.html",
-    "default_icon": { "16": "icons/icon-16.png", "32": "icons/icon-32.png" }
+  "permissions": [
+    "storage",
+    "alarms"
+  ],
+  "background": {
+    "service_worker": "background.js"
   },
-  "icons": { "16": "icons/icon-16.png", "48": "icons/icon-48.png", "128": "icons/icon-128.png" },
-  "content_scripts": [{
-    "matches": ["https://www.twitch.tv/*"],
-    "js": ["core.js", "ui.js", "content.js"],
-    "css": ["content.css"],
-    "run_at": "document_idle"
-  }],
-  "web_accessible_resources": [{
-    "resources": ["ui.css"],
-    "matches": ["https://www.twitch.tv/*"]
-  }]
+  "action": {
+    "default_title": "__MSG_extShortName__",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.twitch.tv/*"
+      ],
+      "js": [
+        "i18n.js",
+        "core.js",
+        "ui-css.js",
+        "ui.js",
+        "content.js"
+      ],
+      "css": [
+        "content.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  }
 }

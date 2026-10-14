@@ -1,0 +1,587 @@
+{
+  "localeCode": {
+    "message": "en"
+  },
+  "extName": {
+    "message": "Twitch Snooze: Hide Channels & Categories"
+  },
+  "extShortName": {
+    "message": "Twitch Snooze"
+  },
+  "extDescription": {
+    "message": "Hide Twitch channels, categories and keywords without unfollowing. Snooze streamers for a while or until you unhide them."
+  },
+  "version": {
+    "message": "v{version}"
+  },
+  "presetToday": {
+    "message": "Today"
+  },
+  "presetDay": {
+    "message": "24 hours"
+  },
+  "presetThreeDays": {
+    "message": "3 days"
+  },
+  "presetWeek": {
+    "message": "1 week"
+  },
+  "presetFortnight": {
+    "message": "2 weeks"
+  },
+  "presetMonth": {
+    "message": "1 month"
+  },
+  "presetForever": {
+    "message": "Until I unhide"
+  },
+  "returnMidnight": {
+    "message": "back at midnight"
+  },
+  "returnOn": {
+    "message": "back {when}"
+  },
+  "returnNever": {
+    "message": "no end date"
+  },
+  "snoozedToday": {
+    "message": "{name} snoozed until midnight."
+  },
+  "snoozedDay": {
+    "message": "{name} snoozed for 24 hours."
+  },
+  "snoozedThreeDays": {
+    "message": "{name} snoozed for 3 days."
+  },
+  "snoozedWeek": {
+    "message": "{name} snoozed for 1 week."
+  },
+  "snoozedFortnight": {
+    "message": "{name} snoozed for 2 weeks."
+  },
+  "snoozedMonth": {
+    "message": "{name} snoozed for 1 month."
+  },
+  "snoozedForever": {
+    "message": "{name} hidden until you unhide them."
+  },
+  "reasonUntil": {
+    "message": "Hidden until you unhide"
+  },
+  "reasonBack": {
+    "message": "Back {date} at {time}"
+  },
+  "reasonWhilePlaying": {
+    "message": "Hidden while playing {category}"
+  },
+  "reasonCategory": {
+    "message": "{category} is hidden"
+  },
+  "reasonKeyword": {
+    "message": "Title or tags match “{keyword}”"
+  },
+  "menuSnoozeTitle": {
+    "message": "Snooze {name}"
+  },
+  "menuSnoozeIntro": {
+    "message": "Hidden from your sidebar, Browse and search. You still follow them."
+  },
+  "menuPlaying": {
+    "message": "Playing {category}"
+  },
+  "menuHideWhilePlaying": {
+    "message": "Hide while they play {category}"
+  },
+  "menuHideCategory": {
+    "message": "Hide {category} everywhere"
+  },
+  "menuAlwaysShow": {
+    "message": "Always show {name}"
+  },
+  "menuAlwaysShownIntro": {
+    "message": "Always shown. Your hiding rules for them are paused."
+  },
+  "menuStopAlwaysShow": {
+    "message": "Stop always showing {name}"
+  },
+  "menuHiddenTitle": {
+    "message": "{name} is hidden"
+  },
+  "menuShowNow": {
+    "message": "Show {name}"
+  },
+  "menuChangeHowLong": {
+    "message": "Snooze for a different time"
+  },
+  "categoryHideTitle": {
+    "message": "Hide {category}"
+  },
+  "categoryHideIntro": {
+    "message": "Hides this category, its streams and its sidebar rows. You can still let favourite streamers through."
+  },
+  "categoryHideButton": {
+    "message": "Hide category"
+  },
+  "close": {
+    "message": "Close"
+  },
+  "closeManager": {
+    "message": "Close Hidden content"
+  },
+  "triggerSnooze": {
+    "message": "Snooze {name}"
+  },
+  "triggerHideCategory": {
+    "message": "Hide category {category}"
+  },
+  "cardSnooze": {
+    "message": "Snooze"
+  },
+  "tileHide": {
+    "message": "Hide"
+  },
+  "toastWhilePlaying": {
+    "message": "{name} hidden while playing {category}."
+  },
+  "toastCategoryHidden": {
+    "message": "{category} hidden. Let streamers through in Hidden content."
+  },
+  "toastCategoryAdded": {
+    "message": "{category} hidden."
+  },
+  "toastCategoryShown": {
+    "message": "{category} is visible again."
+  },
+  "toastAlwaysShow": {
+    "message": "{name} will always be shown."
+  },
+  "toastStopAlways": {
+    "message": "{name} is no longer always shown."
+  },
+  "toastBack": {
+    "message": "{name} is back."
+  },
+  "toastKeywordAdded": {
+    "message": "Streams with “{keyword}” hidden."
+  },
+  "toastKeywordRemoved": {
+    "message": "Streams with “{keyword}” are visible again."
+  },
+  "toastExceptionRemoved": {
+    "message": "Exception removed."
+  },
+  "toastUndone": {
+    "message": "Change undone."
+  },
+  "toastPeekOn": {
+    "message": "Peek is on: hidden items are shown faded."
+  },
+  "toastPeekOff": {
+    "message": "Peek is off."
+  },
+  "undo": {
+    "message": "Undo"
+  },
+  "managerTitle": {
+    "message": "Hidden content"
+  },
+  "managerSubtitle": {
+    "message": "What you’ve hidden on Twitch, and when it comes back"
+  },
+  "managerButton": {
+    "message": "Hidden content"
+  },
+  "managerButtonAria": {
+    "message": "Hidden content ({count})"
+  },
+  "managerButtonTitle": {
+    "message": "Manage what you’ve hidden on Twitch"
+  },
+  "tabsLabel": {
+    "message": "Sections"
+  },
+  "tabStreamers": {
+    "message": "Streamers"
+  },
+  "tabCategories": {
+    "message": "Categories"
+  },
+  "tabKeywords": {
+    "message": "Keywords"
+  },
+  "tabAlwaysShow": {
+    "message": "Always show"
+  },
+  "searchStreamers": {
+    "message": "Search hidden streamers"
+  },
+  "show": {
+    "message": "Show"
+  },
+  "remove": {
+    "message": "Remove"
+  },
+  "hide": {
+    "message": "Hide"
+  },
+  "add": {
+    "message": "Add"
+  },
+  "moreOptions": {
+    "message": "More options for {name}"
+  },
+  "changeHowLong": {
+    "message": "Change how long"
+  },
+  "openChannel": {
+    "message": "Open channel"
+  },
+  "showDespiteRules": {
+    "message": "Show this streamer despite the matching categories and keywords"
+  },
+  "emptyStreamers": {
+    "message": "Nothing hidden yet. Use the moon beside a streamer to snooze them."
+  },
+  "emptySearch": {
+    "message": "No hidden streamers match your search."
+  },
+  "listNote": {
+    "message": "Also lists category and keyword matches from your open Twitch tabs."
+  },
+  "addCategoryPlaceholder": {
+    "message": "Add a category…"
+  },
+  "addCategoryLabel": {
+    "message": "Category name"
+  },
+  "emptyCategories": {
+    "message": "No hidden categories yet."
+  },
+  "categoryEverywhere": {
+    "message": "Hidden everywhere"
+  },
+  "categoriesNote": {
+    "message": "Hidden until you remove them. Streamers you always show stay visible."
+  },
+  "showCategory": {
+    "message": "Show {category} again"
+  },
+  "exceptions_one": {
+    "message": "{count} streamer let through"
+  },
+  "exceptions_other": {
+    "message": "{count} streamers let through"
+  },
+  "removeException": {
+    "message": "Hide {name} in {category} again"
+  },
+  "addKeywordPlaceholder": {
+    "message": "Add a word or phrase…"
+  },
+  "addKeywordLabel": {
+    "message": "Word or phrase to hide"
+  },
+  "keywordsIntro": {
+    "message": "Hides streams whose title or tags contain this word, like drops, 24/7 or a tag."
+  },
+  "emptyKeywords": {
+    "message": "No keywords yet."
+  },
+  "hiddenNow_one": {
+    "message": "{count} hidden now"
+  },
+  "hiddenNow_other": {
+    "message": "{count} hidden now"
+  },
+  "keywordNoMatches": {
+    "message": "No matches in your open tabs"
+  },
+  "keywordsNote": {
+    "message": "Matches whole words on stream cards and search results. The sidebar shows no titles, so a sidebar row is hidden only when the same stream’s card on the page matches."
+  },
+  "removeKeyword": {
+    "message": "Stop hiding {keyword}"
+  },
+  "addAlwaysPlaceholder": {
+    "message": "Add a streamer…"
+  },
+  "addAlwaysLabel": {
+    "message": "Channel name or Twitch link"
+  },
+  "alwaysIntro": {
+    "message": "Always visible, in every category and on every list."
+  },
+  "emptyAlways": {
+    "message": "Keep favourites visible: add a channel above, or use the star in a hidden streamer’s menu."
+  },
+  "alwaysShown": {
+    "message": "Always shown"
+  },
+  "rulesPaused": {
+    "message": "Hiding rules paused"
+  },
+  "alwaysNote": {
+    "message": "Overrides snoozes, categories and keywords. Removing someone resumes their saved rules."
+  },
+  "removeAlways": {
+    "message": "Stop always showing {name}"
+  },
+  "removeAlwaysHelp": {
+    "message": "Their saved hiding rules apply again"
+  },
+  "savedLocally": {
+    "message": "Saved in this browser only"
+  },
+  "backup": {
+    "message": "Backup"
+  },
+  "backupHelp": {
+    "message": "Save or restore your rules (opens in a new tab)"
+  },
+  "escToClose": {
+    "message": "Esc to close"
+  },
+  "peek": {
+    "message": "Peek"
+  },
+  "peekOnLabel": {
+    "message": "Peeking"
+  },
+  "peekHelp": {
+    "message": "Show hidden items faded instead of removing them"
+  },
+  "peekLabelHidden": {
+    "message": "Hidden"
+  },
+  "popupInThisTab": {
+    "message": "Channel in this tab"
+  },
+  "statusLiveIn": {
+    "message": "Streaming {category}"
+  },
+  "statusOnChannel": {
+    "message": "Open in this tab"
+  },
+  "popupSnooze": {
+    "message": "Snooze {name}"
+  },
+  "popupAlwaysShow": {
+    "message": "Always show"
+  },
+  "manualSummary": {
+    "message": "Snooze a channel by name"
+  },
+  "manualChannel": {
+    "message": "Channel name or Twitch link"
+  },
+  "manualDuration": {
+    "message": "Snooze for"
+  },
+  "manualSubmit": {
+    "message": "Snooze channel"
+  },
+  "manualPlaceholder": {
+    "message": "e.g. northernlion"
+  },
+  "reviewLink": {
+    "message": "Leave a review"
+  },
+  "reviewAria": {
+    "message": "Leave a review for Twitch Snooze (opens in a new tab)"
+  },
+  "backupPageTitle": {
+    "message": "Twitch Snooze backup"
+  },
+  "backupTitle": {
+    "message": "Backup"
+  },
+  "backupIntro": {
+    "message": "Your hidden streamers, categories, keywords and always-shown streamers are stored only in this browser. Save a backup before reinstalling, or to move your rules to another computer."
+  },
+  "backupSaveTitle": {
+    "message": "Save a backup"
+  },
+  "backupSummary": {
+    "message": "This browser has {summary}."
+  },
+  "backupNothing": {
+    "message": "nothing saved yet"
+  },
+  "backupDownload": {
+    "message": "Download backup file"
+  },
+  "backupSaved": {
+    "message": "Backup saved to your downloads."
+  },
+  "backupRestoreTitle": {
+    "message": "Restore from a backup"
+  },
+  "backupRestoreIntro": {
+    "message": "Choose a .json file saved by Twitch Snooze. You’ll see what’s in it before anything changes."
+  },
+  "backupChoose": {
+    "message": "Choose file…"
+  },
+  "backupNoFile": {
+    "message": "No file chosen"
+  },
+  "backupContains": {
+    "message": "This backup has {summary}. Choose how to load it."
+  },
+  "backupMerge": {
+    "message": "Add to my rules"
+  },
+  "backupReplace": {
+    "message": "Replace my rules…"
+  },
+  "backupReplaceWarn": {
+    "message": "Replace removes every current snooze, category, keyword and always-shown streamer, then loads the backup. This can’t be undone."
+  },
+  "backupReplaceConfirm": {
+    "message": "Replace everything"
+  },
+  "cancel": {
+    "message": "Cancel"
+  },
+  "backupMerged": {
+    "message": "Backup added. This browser now has {summary}."
+  },
+  "backupReplaced": {
+    "message": "Rules replaced. This browser now has {summary}."
+  },
+  "backupFoot": {
+    "message": "Backups contain channel names, category names, keywords and dates. Expired snoozes are left out. Nothing is uploaded, and open Twitch tabs update right away."
+  },
+  "countSnoozes_one": {
+    "message": "{count} hidden streamer"
+  },
+  "countSnoozes_other": {
+    "message": "{count} hidden streamers"
+  },
+  "countStreamerRules_one": {
+    "message": "{count} streamer category rule"
+  },
+  "countStreamerRules_other": {
+    "message": "{count} streamer category rules"
+  },
+  "countCategories_one": {
+    "message": "{count} hidden category"
+  },
+  "countCategories_other": {
+    "message": "{count} hidden categories"
+  },
+  "countKeywords_one": {
+    "message": "{count} keyword"
+  },
+  "countKeywords_other": {
+    "message": "{count} keywords"
+  },
+  "countAlways_one": {
+    "message": "{count} always-shown streamer"
+  },
+  "countAlways_other": {
+    "message": "{count} always-shown streamers"
+  },
+  "errInvalidRequest": {
+    "message": "Twitch Snooze couldn’t understand this request."
+  },
+  "errSave": {
+    "message": "Twitch Snooze couldn’t save this change."
+  },
+  "errChannel": {
+    "message": "Choose a valid Twitch channel."
+  },
+  "errCategory": {
+    "message": "Choose a valid Twitch category."
+  },
+  "errCategories": {
+    "message": "Choose valid Twitch categories."
+  },
+  "errKeywords": {
+    "message": "Choose valid keywords."
+  },
+  "errAlwaysShown": {
+    "message": "Stop always showing this streamer before hiding them."
+  },
+  "errRuleGone": {
+    "message": "This category rule no longer exists."
+  },
+  "errNoRule": {
+    "message": "Choose a category rule that still exists."
+  },
+  "errAllow": {
+    "message": "Choose whether to show this channel."
+  },
+  "errKeywordInvalid": {
+    "message": "Enter a word or phrase with letters or numbers."
+  },
+  "errKeywordGone": {
+    "message": "This keyword no longer exists."
+  },
+  "errNoKeyword": {
+    "message": "Choose a keyword that still exists."
+  },
+  "errDuration": {
+    "message": "Choose a valid snooze duration."
+  },
+  "errClock": {
+    "message": "Your computer’s clock looks wrong."
+  },
+  "errSnoozeTime": {
+    "message": "The snooze end time is invalid."
+  },
+  "errNotSnoozed": {
+    "message": "This channel is no longer snoozed."
+  },
+  "errImportMode": {
+    "message": "Choose whether to add to or replace your rules."
+  },
+  "errUndo": {
+    "message": "This change can’t be undone."
+  },
+  "errUndoRestore": {
+    "message": "This can no longer be undone."
+  },
+  "errUndoNewer": {
+    "message": "A newer change was made or this Undo expired, so it can’t be undone."
+  },
+  "errUnknown": {
+    "message": "Unknown Twitch Snooze request."
+  },
+  "errNotFromExtension": {
+    "message": "This request didn’t come from Twitch Snooze."
+  },
+  "errRegister": {
+    "message": "Only an open Twitch tab can register."
+  },
+  "errLearn": {
+    "message": "Only an open Twitch tab can share page details."
+  },
+  "errReload": {
+    "message": "Twitch Snooze was updated. Refresh this Twitch tab to keep using it."
+  },
+  "errGeneric": {
+    "message": "Couldn’t update Twitch Snooze. Refresh this Twitch tab and try again."
+  },
+  "errEnterChannel": {
+    "message": "Enter a Twitch channel name or link."
+  },
+  "errEnterCategory": {
+    "message": "Enter the category name as it appears on Twitch."
+  },
+  "errBackupNotOurs": {
+    "message": "This file isn’t a Twitch Snooze backup."
+  },
+  "errBackupNewer": {
+    "message": "This backup was made by a newer version of Twitch Snooze. Update the extension first."
+  },
+  "errBackupEmpty": {
+    "message": "This backup has no active rules to import."
+  },
+  "errBackupJson": {
+    "message": "This file couldn’t be read as a backup."
+  },
+  "errBackupLarge": {
+    "message": "This file is too large to be a Twitch Snooze backup."
+  }
+}

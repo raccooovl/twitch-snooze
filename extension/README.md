@@ -1,66 +1,110 @@
 # Twitch Snooze
 
-Snooze Twitch streamers, hide categories, or hide a streamer only while they play a particular category. Your rules stay on this browser without changing your follows.
+Snooze Twitch streamers, hide categories and keywords, or hide a streamer only while they play a particular game. Your rules stay in this browser and never change your follows.
+
+## What's new in 0.6.1
+
+- **Tag keywords stay hidden:** a keyword for a tag, such as `Nederlands`, no longer lets those streams reappear after a moment.
+- **Profile pictures:** Hidden content and the popup show streamers' Twitch profile pictures once Twitch Snooze has seen them on a page.
+
+## New in 0.6.0
+
+- **A new look that fits Twitch:** Twitch's own colours, type and menus, in light and dark themes. Every duration shows when the streamer comes back.
+- **Peek mode:** show hidden items faded with a "Hidden" label instead of removing them.
+- **More places:** search results and the homepage's featured carousel, as well as video and clip lists.
+- **Languages:** English, Dutch, German, Spanish and Brazilian Portuguese, chosen from your browser's language.
+- "Whitelist" is now called **Always show**.
+
+See `CHANGELOG.md` for details.
 
 ## Install in Chrome or Edge
 
 1. Open `chrome://extensions` or `edge://extensions`.
 2. Turn on **Developer mode**.
-3. Click **Load unpacked** and select this folder, which contains `manifest.json`.
-4. Refresh open Twitch tabs. Pin Twitch Snooze to the browser toolbar if you want quick access to the manager.
+3. Click **Load unpacked** and select this folder, the one that contains `manifest.json`.
+4. Refresh open Twitch tabs. Pin Twitch Snooze to the toolbar for quick access.
 
 The ZIP is a release package. Extract it first to use **Load unpacked**.
 
 ## Use
 
-Click the **moon** beside a channel in Twitch's sidebar, including when the sidebar is collapsed. Or hover over a stream card and click **Snooze**. The sidebar opens an inline menu; collapsed sidebars and stream cards use a nearby menu. Choose **Today**, **24 hours**, **3 days**, **1 week**, **2 weeks**, or **1 month**. Today ends at your local midnight; one month returns on the corresponding calendar date, clamped to the last day of shorter months.
+Click the **moon** beside a channel in Twitch's sidebar (it also works when the sidebar is collapsed), or hover over a stream, video, clip or search result and click **Snooze**. A menu opens beside it with **Today**, **24 hours**, **3 days**, **1 week**, **2 weeks**, **1 month** and **Until I unhide**, each showing when the streamer comes back. Today ends at your local midnight; one month returns on the same date next month, or the last day of a shorter month. Until I unhide has no end date.
 
-The channel disappears from sidebar and discovery cards across open Twitch tabs. Its follow/subscription is preserved. Playing streams, chat messages, and direct channel pages are not blocked.
+The streamer disappears from the sidebar, Browse and category pages, video and clip lists, search results and the homepage carousel in every open Twitch tab. Your follow and subscription stay as they are. Playing streams, chat and the channel page itself are not blocked. When the homepage carousel features someone you've hidden, it moves on to the next featured stream; if every featured stream is hidden, the carousel is removed.
 
-Right-click, Ctrl-click, and middle-click on channel links keep their normal browser behavior, including opening channels in another tab.
+Right-click, Ctrl-click and middle-click on channel links keep their normal behaviour.
 
-Click **Undo** after a timed snooze change, or **Hidden Content** near the top of the sidebar to open the manager beside it. The floating panel has **Streamers**, **Categories**, and **Whitelist** sections with counts. It stays within your window and keeps the sidebar in place. Close it with Escape, its close button, or a click outside. Compact return dates show their exact time on hover. The toolbar popup uses the same section names, accepts a channel name or Twitch link and offers **Change** to choose a new duration. Changing one channel does not block Undo for an unrelated channel; Undo still protects newer changes to the same channel.
+Every change shows a confirmation with **Undo**. Undo refuses to overwrite a newer change to the same streamer, category or keyword.
 
-## Whitelist
+## Hidden content
 
-Open **Whitelist** in the sidebar manager or toolbar popup and add a channel name or Twitch link. You can also click the **star** beside a hidden streamer, or **Always show this streamer** in their moon menu.
+Click **Hidden content** near the top of Twitch's sidebar. The panel opens beside the sidebar with four sections:
 
-Whitelisted streamers stay visible in every category, overriding timed snoozes, streamer-specific rules and whole-category rules. Existing rules are paused rather than deleted; removing someone from the whitelist makes those rules apply again. Timed snoozes still expire normally while paused. To create a new snooze for a whitelisted streamer, remove them from the whitelist first.
+Rows show the streamer's Twitch profile picture once Twitch Snooze has seen it on a page (in the sidebar, a stream card or the homepage), or their initials until then.
 
-Category exceptions still work independently: they allow a streamer in one category, while the whitelist allows them everywhere.
+- **Streamers:** everyone you've snoozed or hidden in a category, plus streams from your open Twitch tabs that a hidden category or keyword catches. Each row says why and when they come back. **Show** brings them back (for a category or keyword match, it lets that streamer through). The **⋯** menu offers **Change how long**, **Always show** and **Open channel**.
+- **Categories:** hide a category by name. Expand a category's "let through" count to hide a streamer there again. **Show** removes the rule.
+- **Keywords:** words or phrases to hide (see below).
+- **Always show:** streamers who stay visible everywhere.
+
+Close the panel with Escape, its close button or a click outside. The footer links to **Backup**.
+
+## Peek
+
+Turn on **Peek** in Hidden content or the toolbar popup to see what your rules are catching. Hidden streams, rows, tiles and search results appear faded with a **Hidden** label instead of disappearing. Opening the menu on a faded item explains why it's hidden and offers **Show** (and a different duration for snoozes). Peek stays on in every Twitch tab until you turn it off.
+
+## The channel you're watching
+
+On a channel page (including its Videos, Clips and About pages), open the toolbar popup. The card at the top names the channel and what it's streaming, with **Snooze** (durations and the two category options) and **Always show**. If the channel is hidden, the card says why and offers **Show**.
+
+## Keywords
+
+Add a word or phrase under **Keywords**. Streams whose title or tags contain it are hidden, for example `drops` (which also matches the `DropsEnabled` tag), `reruns`, `24/7` or a language tag such as `Nederlands`.
+
+- Matching uses whole words and ignores case and punctuation, so `drops` matches "[DROPS]" but not "raindrops". Chinese, Japanese, Korean and Thai keywords match anywhere in the text.
+- Keywords apply to stream cards, video and clip titles, search results and the featured carousel. Twitch's sidebar shows no titles or tags, so a sidebar row is hidden by a keyword only when the same stream's card on the page matches.
+- Each keyword shows how many streams it hides in your open tabs. **Show** on one of those streamers lets them through.
+- Streamers you always show stay visible.
 
 ## Category rules
 
-When a streamer's category is available, the moon menu offers:
+When a streamer's category is known, the moon menu offers:
 
-- **Hide here until they switch:** hide that streamer only in the category shown in the menu. They appear again when Twitch updates their category. The rule stays saved for their next visit to that category.
-- **Hide this category everywhere:** hide matching sidebar rows, stream cards, and Browse category tiles. Hover over a Browse category tile to hide it directly, or open **Categories** in the manager and enter its name as shown on Twitch.
+- **Hide while they play [category]:** hides that streamer only while they're in that category. The rule stays saved for next time.
+- **Hide [category] everywhere:** hides matching sidebar rows, stream cards, Browse tiles and search results. You can also hover a Browse tile and click **Hide**, or type the name under **Categories**.
 
-Category rules stay until you remove them. In **Streamers**, Restore removes a streamer's saved rules and timed snooze. If a whole-category rule also hides them, Restore adds an exception for that streamer in the currently matched categories. In **Categories**, expand a rule's exception count and remove an exception to hide that streamer again, or click **Show** to remove the whole-category rule.
+Rules remember the category's web address (for example `/directory/category/just-chatting`), which is the same in every language, and learn translated names as Twitch shows them, so they keep working if you switch Twitch's language. In Twitch's collapsed sidebar the category isn't shown; category rules apply there when a matching stream card is on the same page.
 
-**Streamers** includes saved timed snoozes and streamer-specific rules, plus category matches currently loaded in open Twitch tabs. Whitelisted streamers appear in their own tab. The extension does not fetch a catalogue of every Twitch streamer. A saved streamer-specific rule remains listed even when that streamer is currently playing something else. The sidebar badge combines the streamers and hidden categories shown in the manager; each section shows its own count.
+## Always show
 
-Category matching reads Twitch's current card text. Unknown categories remain visible. In the native collapsed sidebar Twitch removes category text; category filtering there needs a current matching stream card on the same page, or an expanded sidebar. Timed snoozes still work when collapsed. Category names are matched ignoring case, spacing and punctuation; use the category name displayed in your Twitch language.
+Add a channel name or link under **Always show**, or choose **Always show** in a streamer's menu. They stay visible everywhere, over snoozes, category rules and keywords. Their saved rules are paused, not deleted, and apply again when you remove them. Snoozes still expire normally while paused.
 
-The menus support keyboard activation, arrow keys, Home/End, and Escape. They follow Twitch's theme, stay within the window, and scroll when space is limited.
+## Backup
 
-Snoozes survive browser restarts. If the browser is closed when a snooze expires, it is cleared when the extension next starts. No server or account is needed.
+Your rules are stored only in this browser profile and are deleted if you uninstall the extension. Click **Backup** in the popup or the Hidden content panel:
+
+- **Download backup file** saves your snoozes, category and streamer rules, keywords and always-shown streamers as a `.json` file. Expired snoozes and Undo history are left out.
+- **Restore from a backup** shows what a file contains first. **Add to my rules** merges it (a longer snooze wins, exceptions are combined); **Replace my rules** asks for confirmation, then replaces everything.
+
+Open Twitch tabs update immediately. Nothing is uploaded.
+
+## Languages
+
+Twitch Snooze follows your browser's language: English, Dutch (Nederlands), German (Deutsch), Spanish (Español) and Brazilian Portuguese (Português). Other languages use English. Dates and times follow your browser's regional format.
 
 ## Permissions
 
-- **Storage:** saves channel snoozes, category rules, exceptions and your whitelist locally; session storage keeps only extension-enabled Twitch tab IDs for the manager.
-- **Alarms:** clears expired snoozes while the extension worker is idle.
-- **Twitch site access:** adds the menu and hides matching channel cards on `https://www.twitch.tv/` only.
+- **Storage:** keeps your rules and whether Peek is on, in this browser. Session storage keeps only the IDs of open Twitch tabs for the manager.
+- **Alarms:** ends snoozes on time while the extension is idle.
+- **Twitch site access:** adds the controls and hides matching items on `https://www.twitch.tv/` only.
 
-There are no analytics, network APIs, remote scripts, or additional site permissions. See `PRIVACY.md`.
+No analytics, remote code or extra site access. The only requests Twitch Snooze makes are for streamers' profile pictures, from Twitch's own image server (`static-cdn.jtvnw.net`), sent without a referrer. No extension file is exposed to web pages. The popup's channel card asks the Twitch tab's own content script which channel it shows, so it doesn't need the tabs permission. See `PRIVACY.md`.
 
 ## Update an unpacked installation
 
-The release folder remains `twitch-snooze`. If you loaded this folder previously, open your browser's Extensions page and click **Reload** on Twitch Snooze, then refresh your open Twitch tabs. Existing snoozes are preserved. If you installed a copy elsewhere, replace that copy with the new ZIP contents before reloading.
+Open your browser's Extensions page, click **Reload** on Twitch Snooze, then refresh open Twitch tabs. If you loaded it from a different folder, copy the new files into that folder first: loading a new folder creates a separate extension with empty storage. Version 0.6.1 keeps all saved snoozes, rules, keywords and always-shown streamers.
 
-Version **0.4.1** introduces the **Hidden Content** floating manager with a wider layout, clear section counts and readable rows. Existing snoozes, category rules, exceptions, whitelist and the six duration choices are preserved. No additional permissions are requested.
-
-Twitch Snooze is an independent browser extension and is not affiliated with Twitch.
+Twitch Snooze is an independent browser extension and is not affiliated with Twitch. The Inter typeface is used under the SIL Open Font License (`fonts/Inter-OFL.txt`).
 
 ## Source and support
 
